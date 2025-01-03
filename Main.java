@@ -24,13 +24,28 @@ public class Main {
 		
 		// assign x-values
 		for (int x = 1; x <= num_keys; x++) {
-			double y = p((double) x);
+			double y = Data.p((double) x);
 			
-			stringSheet.get(x - 1).set(0, Formatting.formatFunctionLabel(x)); // "001", etc.
+			stringSheet.get(x - 1).set(0, Printer.formatFunctionLabel(x)); // "001", etc.
 			doubleSheet.get(x - 1).set(1, y);
 		}
 		
-		// test print
+		Printer.printSheet(stringSheet, doubleSheet);
+	}
+}
+
+class Data {
+	public static double p(double x) { // Desmos exp regression
+		return 10.04681 * Math.pow(0.906906, x);
+	}
+}
+
+class Printer {
+	
+	public static void printSheet(
+		ArrayList<ArrayList<String>> stringSheet, 
+		ArrayList<ArrayList<Double>> doubleSheet) {
+		
 		for (int row = 0; row < stringSheet.size(); row++) {
 			for (int col = 0; col < stringSheet.get(0).size(); col++) {
 				System.out.print(" | ");
@@ -39,10 +54,10 @@ public class Main {
 				}
 				else {
 					if (doubleSheet.get(row).get(col) == null) {
-						System.out.print("  +  ");
+						System.out.print("   +   ");
 					}
 					else { // if not null
-						System.out.print(Formatting.formatDouble(doubleSheet.get(row).get(col)));
+						System.out.print(Printer.formatDouble(doubleSheet.get(row).get(col)));
 					}
 				}
 				if (col == stringSheet.get(0).size() - 1) { // after last cell in row
@@ -53,12 +68,6 @@ public class Main {
 		}
 	}
 	
-	private static double p(double x) { // Desmos exp regression
-		return 10.04681 * Math.pow(0.906906, x);
-	}
-}
-
-class Formatting {
 	public static String formatFunctionLabel(int x) { // 001, 002, etc.
 		String label = Integer.toString(x);
 		int maxLabelLength = 3;
@@ -71,7 +80,7 @@ class Formatting {
 	}
 	
 	public static String formatDouble(double doubleValue) {
-	    int length = 5;
+	    int length = 7;
 	    String stringValue = Double.toString(doubleValue);
 	    
 	    // If value is already longer than the required length, truncate it
