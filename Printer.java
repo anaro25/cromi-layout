@@ -4,14 +4,14 @@ import java.util.ArrayList;
 class Printer {
 	public static void printSheet() {
 		for (int row = 0; row < Data.freqSheet.size(); row++) {
-			System.out.print("| " + Data.keyCodes.get(row) + " || ");
+			System.out.print("[ " + Data.keyCodes.get(row) + " ] ");
 			
-			for (int col = 0; col < Data.freqSheet.get(0).size(); col++) {
-				if (Data.freqSheet.get(row).get(col) == null) {
-					System.out.print("   +   ");
+			for (Double cell : Data.freqSheet.get(row)) {
+				if (cell == null) {
+					System.out.print("       ");
 				}
 				else { // if not null
-					System.out.print(Printer.formatDouble(Data.freqSheet.get(row).get(col)));
+					System.out.print(Printer.formatDouble(cell));
 				}
 				System.out.print(" | ");
 			}
@@ -30,7 +30,7 @@ class Printer {
 		return label;
 	}
 	
-	public static String formatDouble(double doubleValue) {
+	private static String formatDouble(double doubleValue) {
 	    int length = 7;
 	    String stringValue = Double.toString(doubleValue);
 	    

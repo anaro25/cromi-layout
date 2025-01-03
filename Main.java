@@ -38,25 +38,20 @@ class Huffman {
 		
 		while (numLeastFreq < Data.nAry) {
 			int currentRow = Data.freqSheet.size() - 1 - numLeastFreq;
-			Double currentCell = Data.freqSheet.get(currentRow).get(0);
+			Double leftmostCell = Data.freqSheet.get(currentRow).get(0);
 			
-			if (currentCell != null) {
-				sumLeastFreq += currentCell;
-				
-				Data.freqSheet.get(currentRow).set(1, currentCell); // shift right
+			// move the row right 1 generation
+			Data.freqSheet.get(currentRow).add(0, null);
+			
+			if (leftmostCell != null) {	
+				sumLeastFreq += leftmostCell;
 				
 				if (numLeastFreq == Data.nAry - 1) { // if it's the last least freq
-					Data.freqSheet.get(currentRow).set(0, sumLeastFreq);
-				}
-				else {
-					// set original cell to null
-					Data.freqSheet.get(currentRow).set(0, null);
-				}
-				
+					Data.freqSheet.get(currentRow).set(0, sumLeastFreq); // set parent freq
+				}		
 				numLeastFreq++;
-			}	
+			}
 		}
-		
 		return sumLeastFreq;
 	}
 	
