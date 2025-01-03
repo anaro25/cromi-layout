@@ -8,12 +8,15 @@ public class Main {
 		Init.setNull();
 		Init.initializeFreqs();
 		
-		Huffman.createTree();
+		//Huffman.createTree();
 		
 		Printer.printSheet();
 	}
 }
 
 class Huffman {
-	
+	public static void createTree() {
+		// the second column is the topmost level of the tree
+		// if 
+	}
 }
