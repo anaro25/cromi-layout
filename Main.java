@@ -3,37 +3,36 @@ package x;
 // This programs aims to do Huffman coding to waste no time.
 	// Just emulate the manual encoding in excel (represent as cells)
 	// You can just use static arrays for clearer intuition.
-// Use 1-based indexing since excel is 1-based
 
 public class Main {
 	
 	public static void main (String[] args) {
 		int num_keys = 90; // number of keys
+		int maxCodeLength = 5; // based
 		
-		String[][] sheet = new String[(num_keys*2)+1][9];
+		String[][] sheet = new String[num_keys * 2][1 + 2*(maxCodeLength)];
 			// double the row size to allow space for block migrationsc
 			// represent the keys using indices (whole numbers)
 			// leave a column for internal_node_names to the left of frequency column
 		sheet = formatEmptyCells(sheet.length, sheet[0].length);
 		
-		/*
 		// assign x-values
-		for (int row = 1; row <= num_keys; row++) {
+		for (int row = 0; row <= num_keys; row++) {
 			double x = (double) row;
 			double y = p(x);
-			sheet[row][1] = String.format("%02d", (int) x);
-			sheet[row][5] = Double.toString(y);
+			sheet[row][0] = "  " + String.format("%02d", (int) x) + " ";
+			sheet[row][4] = Double.toString(y);
 		}
-		*/
 		
 		// test print
-		for (int row = 1; row < sheet.length; row++) {
-			System.out.print("| " + sheet[row][0]);
-			for (int col = 1; col <= 8; col++) {
-				System.out.print(" | " + formatValue(sheet[row][col]));
-			}
+		for (int row = 0; row < sheet.length; row++) {
+			System.out.print("| " + sheet[row][0] + " || ");
 			
-			System.out.print(" |" + "\n");
+			// start at 1 since sheet[row][0] is already printed
+			for (int col = 1; col < sheet[0].length; col++) {
+				System.out.print(formatValue(sheet[row][col]) + " | ");
+			}
+			System.out.println();
 		}
 	}
 	
