@@ -24,11 +24,11 @@ public class Main {
 		}
 		
 		// test print
-		for (int row = 1; row <= sheet.length; row++) {
+		for (int row = 1; row <= num_keys; row++) {
 			System.out.print(sheet[row][0]);
 			System.out.print(" |  |  |  | ");
 			System.out.print(sheet[row][4]);
-			System.out.println();
+			System.out.println();	
 		}
 	}
 	
