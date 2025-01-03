@@ -4,16 +4,16 @@ import java.util.ArrayList;
 class Printer {
 	public static void printSheet() {
 		for (int row = 0; row < Data.freqSheet.size(); row++) {
-			System.out.print("[ " + Data.keyCodes.get(row) + " ] ");
-			
 			for (Double cell : Data.freqSheet.get(row)) {
 				if (cell == null) {
-					System.out.print("       ");
+					System.out.print("            ");
 				}
 				else { // if not null
-					System.out.print(Printer.formatDouble(cell));
+					System.out.print(" |-- " + Printer.formatDouble(cell));
 				}
-				System.out.print(" | ");
+			}
+			if (Data.keyCodes.get(row) != null) {
+				System.out.print(" [ " + Data.keyCodes.get(row) + " ] ");
 			}
 			System.out.println();
 		}

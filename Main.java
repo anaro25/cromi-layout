@@ -47,7 +47,11 @@ class Huffman {
 				sumLeastFreq += leftmostCell;
 				
 				if (numLeastFreq == Data.nAry - 1) { // if it's the last least freq
-					Data.freqSheet.get(currentRow).set(0, sumLeastFreq); // set parent freq
+					// add a new row for the parent
+					Data.freqSheet.add(currentRow, new ArrayList<>());
+					Data.keyCodes.add(currentRow, null);
+					
+					Data.freqSheet.get(currentRow).add(sumLeastFreq); // set parent freq
 				}		
 				numLeastFreq++;
 			}

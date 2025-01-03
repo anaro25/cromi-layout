@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class Init {
 	public static void setNull() {
-		
 		for (int row = 0; row < Data.num_keys; row++) {
             Data.freqSheet.add(new ArrayList<>());
 		}
