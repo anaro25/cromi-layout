@@ -10,26 +10,54 @@ public class Main {
 		
 		Huffman.createTree();
 		
-		//Printer.printSheet();
+		Printer.printSheet();
 	}
 }
 
 class Huffman {
 	public static void createTree() {
 		// the first column of freqSheet is the topmost level of tree
-		// loop until number of topmost nodes is <= nAry
+		// loop while number of topmost nodes is > nAry + 1
 		
 		int numTopNodes = Data.freqSheet.size(); // initialize
-		System.out.println(numTopNodes);
 		
-		while (numTopNodes > Data.nAry + 1) {
-			// test
-			numTopNodes -= 8;
+		//while (numTopNodes > Data.nAry + 1) {
+		for (int i = 0; i < 1; i++) {
+			createParent();
 			
 			// after processes
-			//numTopNodes = getNumTopNodes(); // update the number of top nodes
-			System.out.println(numTopNodes);
+			numTopNodes = getNumTopNodes(); // update the number of top nodes
 		}
+	}
+	
+	private static double createParent() {
+		// use while loop since you don't know how many cells to traverse upwards
+			// some cells might be null
+		int numLeastFreq = 0;
+		double sumLeastFreq = 0;
+		
+		while (numLeastFreq < Data.nAry) {
+			int currentRow = Data.freqSheet.size() - 1 - numLeastFreq;
+			Double currentCell = Data.freqSheet.get(currentRow).get(0);
+			
+			if (currentCell != null) {
+				sumLeastFreq += currentCell;
+				
+				Data.freqSheet.get(currentRow).set(1, currentCell); // shift right
+				
+				if (numLeastFreq == Data.nAry - 1) { // if it's the last least freq
+					Data.freqSheet.get(currentRow).set(0, sumLeastFreq);
+				}
+				else {
+					// set original cell to null
+					Data.freqSheet.get(currentRow).set(0, null);
+				}
+				
+				numLeastFreq++;
+			}	
+		}
+		
+		return sumLeastFreq;
 	}
 	
 	private static int getNumTopNodes() {
