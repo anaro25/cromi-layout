@@ -16,7 +16,7 @@ public class Main {
 			stringSheet.add(new ArrayList<>());
             doubleSheet.add(new ArrayList<>());
             
-			for (int col = 0; col < maxCodeLength; col++) {
+			for (int col = 0; col < maxCodeLength + 1; col++) {
 				stringSheet.get(row).add(null);
 				doubleSheet.get(row).add(null);
 			}
@@ -33,38 +33,25 @@ public class Main {
 		// test print
 		for (int row = 0; row < stringSheet.size(); row++) {
 			for (int col = 0; col < stringSheet.get(0).size(); col++) {
+				System.out.print(" | ");
 				if (col == 0) {
-					System.out.print(" | " + stringSheet.get(row).get(col));
+					System.out.print(stringSheet.get(row).get(col));
 				}
 				else {
-					System.out.print(" | " + doubleSheet.get(row).get(col));
+					if (doubleSheet.get(row).get(col) == null) {
+						System.out.print("  +  ");
+					}
+					else { // if not null
+						System.out.print(Formatting.formatDouble(doubleSheet.get(row).get(col)));
+					}
+				}
+				if (col == stringSheet.get(0).size() - 1) { // after last cell in row
+					System.out.print(" |");
 				}
 			}
 			System.out.println();
 		}
 	}
-	/*
-	private static String formatValue(String value) {
-	    int length = 5;
-	    
-	    // If value is already longer than the required length, truncate it
-	    if (value.length() > length) {
-	        return value.substring(0, length);
-	    }
-
-	    // If value contains only spaces (empty or made of spaces), return as is
-	    if (value.trim().length() == 0) {
-	        return value;
-	    }
-
-	    // Pad the string with zeros (to the right) until it reaches the specified length
-	    StringBuilder paddedValue = new StringBuilder(value);
-	    while (paddedValue.length() < length) {
-	        paddedValue.append("0");
-	    }
-	    return paddedValue.toString();
-	}
-	*/
 	
 	private static double p(double x) { // Desmos exp regression
 		return 10.04681 * Math.pow(0.906906, x);
@@ -74,11 +61,34 @@ public class Main {
 class Formatting {
 	public static String formatFunctionLabel(int x) { // 001, 002, etc.
 		String label = Integer.toString(x);
-		int labelLength = 3;
+		int maxLabelLength = 3;
 		
-		for (int i = 0; i < labelLength - label.length(); i++) {
+		for (int i = 0; i < (maxLabelLength - label.length())+1; i++) {
 			label = "0" + label;
 		}
+		
 		return label;
 	}
+	
+	public static String formatDouble(double doubleValue) {
+	    int length = 5;
+	    String stringValue = Double.toString(doubleValue);
+	    
+	    // If value is already longer than the required length, truncate it
+	    if (stringValue.length() > length) {
+	        return stringValue.substring(0, length);
+	    }
+	    // If value contains only spaces (empty or made of spaces), return as is
+	    if (stringValue.trim().length() == 0) {
+	        return stringValue;
+	    }
+
+	    // Pad the string with zeros (to the right) until it reaches the specified length
+	    StringBuilder paddedValue = new StringBuilder(stringValue);
+	    while (paddedValue.length() < length) {
+	        paddedValue.append("0");
+	    }
+	    return paddedValue.toString();
+	}
+	
 }
