@@ -4,23 +4,16 @@ import java.util.ArrayList;
 class Printer {
 	public static void printSheet() {
 		for (int row = 0; row < Data.freqSheet.size(); row++) {
-			System.out.print(" | ");
-			System.out.print(Data.keyCodes.get(row));
+			System.out.print("| " + Data.keyCodes.get(row) + " || ");
 			
 			for (int col = 0; col < Data.freqSheet.get(0).size(); col++) {
-				System.out.print(" | ");
-				
 				if (Data.freqSheet.get(row).get(col) == null) {
 					System.out.print("   +   ");
 				}
 				else { // if not null
 					System.out.print(Printer.formatDouble(Data.freqSheet.get(row).get(col)));
 				}
-				
-				// draw rightmost border
-				if (col == Data.freqSheet.get(0).size() - 1) {
-					System.out.print(" |");
-				}
+				System.out.print(" | ");
 			}
 			System.out.println();
 		}
