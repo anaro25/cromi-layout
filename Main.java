@@ -4,37 +4,47 @@ import java.util.ArrayList;
 
 public class Main {
 	
-	public static void main (String[] args) {
-		int num_keys = 90; // number of keys
-		int maxCodeLength = 5;
+	public static void main (String[] args) {		
+		// initialize all cells to be null since you tend to leave many cells empty
+		Init.setNull();
+		Init.initializeFreqs();
 		
-		ArrayList<ArrayList<String>> stringSheet = new ArrayList<>();
-		ArrayList<ArrayList<Double>> doubleSheet = new ArrayList<>();
+		Printer.printSheet();
+	}
+}
+
+class Init {
+	public static void setNull() {
 		
-		// initialize all cells to be null. This is important since you tend to leave many cells empty.
-		for (int row = 0; row < num_keys; row++) {
-			stringSheet.add(new ArrayList<>());
-            doubleSheet.add(new ArrayList<>());
+		for (int row = 0; row < Data.num_keys; row++) {
+			Data.stringSheet.add(new ArrayList<>());
+            Data.doubleSheet.add(new ArrayList<>());
             
-			for (int col = 0; col < maxCodeLength + 1; col++) {
-				stringSheet.get(row).add(null);
-				doubleSheet.get(row).add(null);
+			for (int col = 0; col < Data.maxCodeLength + 1; col++) {
+				Data.stringSheet.get(row).add(null);
+				Data.doubleSheet.get(row).add(null);
 			}
 		}
+	}
 		
+	public static void initializeFreqs() {
 		// assign x-values
-		for (int x = 1; x <= num_keys; x++) {
+		for (int x = 1; x <= Data.num_keys; x++) {
 			double y = Data.p((double) x);
 			
-			stringSheet.get(x - 1).set(0, Printer.formatFunctionLabel(x)); // "001", etc.
-			doubleSheet.get(x - 1).set(1, y);
+			Data.stringSheet.get(x - 1).set(0, Printer.formatFunctionLabel(x)); // "001", etc.
+			Data.doubleSheet.get(x - 1).set(1, y);
 		}
-		
-		Printer.printSheet(stringSheet, doubleSheet);
 	}
 }
 
 class Data {
+	static int num_keys = 90; // number of keys
+	static int maxCodeLength = 5;
+	
+	static ArrayList<ArrayList<String>> stringSheet = new ArrayList<>();
+	static ArrayList<ArrayList<Double>> doubleSheet = new ArrayList<>();
+	
 	public static double p(double x) { // Desmos exp regression
 		return 10.04681 * Math.pow(0.906906, x);
 	}
@@ -42,25 +52,23 @@ class Data {
 
 class Printer {
 	
-	public static void printSheet(
-		ArrayList<ArrayList<String>> stringSheet, 
-		ArrayList<ArrayList<Double>> doubleSheet) {
+	public static void printSheet() {
 		
-		for (int row = 0; row < stringSheet.size(); row++) {
-			for (int col = 0; col < stringSheet.get(0).size(); col++) {
+		for (int row = 0; row < Data.stringSheet.size(); row++) {
+			for (int col = 0; col < Data.stringSheet.get(0).size(); col++) {
 				System.out.print(" | ");
 				if (col == 0) {
-					System.out.print(stringSheet.get(row).get(col));
+					System.out.print(Data.stringSheet.get(row).get(col));
 				}
 				else {
-					if (doubleSheet.get(row).get(col) == null) {
+					if (Data.doubleSheet.get(row).get(col) == null) {
 						System.out.print("   +   ");
 					}
 					else { // if not null
-						System.out.print(Printer.formatDouble(doubleSheet.get(row).get(col)));
+						System.out.print(Printer.formatDouble(Data.doubleSheet.get(row).get(col)));
 					}
 				}
-				if (col == stringSheet.get(0).size() - 1) { // after last cell in row
+				if (col == Data.stringSheet.get(0).size() - 1) { // after last cell in row
 					System.out.print(" |");
 				}
 			}
