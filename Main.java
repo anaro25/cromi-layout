@@ -8,15 +8,37 @@ public class Main {
 		Init.setNull();
 		Init.initializeFreqs();
 		
-		//Huffman.createTree();
+		Huffman.createTree();
 		
-		Printer.printSheet();
+		//Printer.printSheet();
 	}
 }
 
 class Huffman {
 	public static void createTree() {
-		// the second column is the topmost level of the tree
-		// if 
+		// the first column of freqSheet is the topmost level of tree
+		// loop until number of topmost nodes is <= nAry
+		
+		int numTopNodes = Data.freqSheet.size(); // initialize
+		System.out.println(numTopNodes);
+		
+		while (numTopNodes > Data.nAry + 1) {
+			// test
+			numTopNodes -= 8;
+			
+			// after processes
+			//numTopNodes = getNumTopNodes(); // update the number of top nodes
+			System.out.println(numTopNodes);
+		}
+	}
+	
+	private static int getNumTopNodes() {
+		int temp = 0;
+		for (int row = 0; row < Data.freqSheet.size(); row++) {
+			if (Data.freqSheet.get(row).get(0) != null) {
+				temp++;	
+			}
+		}
+		return temp;
 	}
 }

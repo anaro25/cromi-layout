@@ -26,6 +26,7 @@ public class Init {
 class Data {
 	static int num_keys = 90; // number of keys
 	static int maxCodeLength = 5;
+	static int nAry = 9;
 	
 	static ArrayList<String> keyCodes = new ArrayList<>();
 	static ArrayList<ArrayList<Double>> freqSheet = new ArrayList<>();
