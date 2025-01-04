@@ -17,7 +17,7 @@ public class Tree {
 }
 
 class Node {
-	// String symbol; // "di", "da" 
+	String symbol; // "di", "da" 
 	double freq;
 	public ArrayList<Node> children;
 	

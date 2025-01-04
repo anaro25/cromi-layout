@@ -15,6 +15,8 @@ public class Main {
 				Tree myTree = new Tree(new Node(100.0)); // create rootNode with 100% freq
 				Init.initNodes(myTree, b);
 				Huffman.createHuffmanTree(myTree.root);
+				
+				Cromi.assignSymbols(myTree.root, 0);
 			
 				System.out.print("\n" + "b = " + b);
 				System.out.print(" | height = " + (myTree.getHeight()-1) + "\n\n");
