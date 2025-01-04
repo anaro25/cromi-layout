@@ -3,9 +3,8 @@ import java.util.ArrayList;
 
 public class Cromi {
     
+    // breadth-first traversal
     public static void assignSymbols(Tree myTree) {
-        // breadth-first traversal
-        
         if (myTree.root == null) {
             return; // Tree is empty
         }
@@ -15,14 +14,13 @@ public class Cromi {
 
         while (!currentLevel.isEmpty()) {
             ArrayList<Node> nextLevel = new ArrayList<>();
-            for (int i = 0; i < currentLevel.size(); i++) {
-                Node node = currentLevel.get(i);
+            for (Node node : currentLevel) {
                 System.out.println(node.freq);
                 nextLevel.addAll(node.children);
 
-                // If this is the last sibling, print a newline
-                if (i == currentLevel.size() - 1) {
-                    System.out.println();
+                // Check if this node is the last child of its parent
+                if (node.isLastSibling()) {
+                    System.out.println(); // Print a newline
                 }
             }
             currentLevel = nextLevel; // Move to the next level

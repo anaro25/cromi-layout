@@ -1,14 +1,15 @@
 package x;
+
 import java.util.ArrayList;
 
 public class Tree {
-	Node root;
-	
-	public Tree(Node root) {
-		this.root = root;
-	}
-	
-	public int getHeight() {
+    Node root;
+
+    public Tree(Node root) {
+        this.root = root;
+    }
+
+    public int getHeight() {
         if (root == null) {
             return 0; // Empty tree
         }
@@ -17,35 +18,40 @@ public class Tree {
 }
 
 class Node {
-	String symbol; // "di", "da" 
-	double freq;
-	public ArrayList<Node> children;
-	
-	public Node(double freq) {
-		this.freq = freq;
-		children = new ArrayList<>();
-	}
-	
-	public void addChild(Node child) {
-		children.add(child);
-	}
-	
-	public void addChildren(ArrayList<Node> children) {
-		// add in reverse, since children is ascending
-		for (int i = children.size()-1; i >= 0; i--) {
-			this.children.add(children.get(i));
-		}
-	}
-	
-	public void insertChildSorted(Node newChild) {
-		for (int i = 0; i < children.size(); i++) {
-			if (newChild.freq > children.get(i).freq) {
-				children.add(i, newChild);
-				break;	
-			}
-		}
-	}
-	
+    String symbol; // "di", "da"
+    double freq;
+    ArrayList<Node> children;
+    Node parent;
+
+    public Node(double freq) {
+        this.freq = freq;
+        children = new ArrayList<>();
+        parent = null; // Initialize parent as null
+    }
+
+    public void addChild(Node child) {
+        child.parent = this; // Set parent of the child
+        children.add(child);
+    }
+
+    public void addChildren(ArrayList<Node> children) {
+        // Add in reverse, since children are ascending
+        for (int i = children.size() - 1; i >= 0; i--) {
+            Node child = children.get(i);
+            child.parent = this; // Set parent of each child
+            this.children.add(child);
+        }
+    }
+
+    public void insertChildSorted(Node newChild) {
+        newChild.parent = this; // Set parent of the new child
+        int i = 0;
+        while (i < children.size() && newChild.freq <= children.get(i).freq) {
+            i++;
+        }
+        children.add(i, newChild); // Insert at the appropriate position
+    }
+
     public int getHeight() {
         if (children.isEmpty()) {
             return 1; // A node without children has height 1
@@ -57,14 +63,22 @@ class Node {
         }
         return maxHeight + 1; // Add 1 for the current node
     }
+
+    public boolean isLastSibling() {
+        if (parent == null) {
+            return false; // Root node has no siblings
+        }
+        ArrayList<Node> siblings = parent.children;
+        return siblings.get(siblings.size() - 1) == this; // Check if this node is the last sibling
+    }
 }
 
 class LeafNode extends Node {
-	String content; // meaning (temporarily 001, etc.)
-	// String codeWord; // "didati"
-	
-	public LeafNode(double freq, String content) {
-		super(freq); // call super's contructor
-		this.content = content;
-	}
+    String content; // Meaning (temporarily 001, etc.)
+    // String codeWord; // "didati"
+
+    public LeafNode(double freq, String content) {
+        super(freq); // Call super's constructor
+        this.content = content;
+    }
 }
