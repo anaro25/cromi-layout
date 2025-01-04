@@ -5,7 +5,7 @@ public class Printer {
 		// basically just circling the tree counter-clockwise
 
     public static void printTree(Node node, int depth) { // recursive
-    	int indent = 4;
+    	int indent = 6;
         // print freq
         System.out.print(" ".repeat(depth * indent));
         System.out.print("|-- " + formatDouble(node.freq));

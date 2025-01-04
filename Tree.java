@@ -22,11 +22,19 @@ class Node {
 	public void addChild(Node child) {
 		children.add(child);
 	}
-	/*
-	public void insertChildSorted(Node newChild) {
-		for ()
+	
+	public void addChildren(ArrayList<Node> children) {
+		this.children = children;
 	}
-	*/
+	
+	public void insertChildSorted(Node newChild) {
+		for (int i = 0; i < children.size()-1; i++) {
+			if (newChild.freq > children.get(i).freq) {
+				children.add(i, newChild);
+				break;	
+			}
+		}
+	}
 }
 
 class LeafNode extends Node {

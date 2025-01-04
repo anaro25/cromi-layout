@@ -11,11 +11,10 @@ public class Huffman {
 		
 		// create new child of root, insert in root.children ArrayList
 		Node newRootChild = new Node(sumLeastFreq);
-		//root.insertChildSorted(newRootChild);
-		// test
-		root.addChild(newRootChild);
+		root.insertChildSorted(newRootChild);
 		
-		// add the 'displaced' ArrayList as children of Node newRootChild
+		// add the leastFreqNodes as children of Node newRootChild
+		newRootChild.addChildren(leastFreqNodes);
 	}
 	
 	private static double getSumNodes(ArrayList<Node> nodes) {
