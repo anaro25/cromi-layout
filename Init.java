@@ -6,11 +6,21 @@ public class Init {
 		for (int x = 1; x <= Data.numLeaves; x++) {
 			Node rootNode = myTree.getRootNode(); // pass reference
 			
-			double freq = Data.p((double) x);
-			String content = Formatter.formatContent(x);
+			double y = Data.p((double) x);
+			double freq = (y * rootNode.freq) / Init.getRawSum(); // normalize
 			
+			String content = Formatter.formatContent(x);
 			rootNode.addChild(new LeafNode(freq, content));
 		}
+	}
+	
+	private static double getRawSum() {
+		double rawSum = 0;
+		
+		for (int x = 1; x <= Data.numLeaves; x++) {
+			rawSum += Data.p((double) x);
+		}
+		return rawSum;
 	}
 }
 

@@ -5,14 +5,14 @@ public class Printer {
 		// basically just circling the tree counter-clockwise
 
     public static void printTree(Node node, int depth) { // recursive
-    	int indent = 8;
+    	int indent = 4;
         // print freq
         System.out.print(" ".repeat(depth * indent));
-        System.out.print(node.freq);
+        System.out.print("|-- " + formatDouble(node.freq));
 
         if (node instanceof LeafNode) {
             LeafNode leaf = (LeafNode) node;
-            System.out.print(" " + leaf.content);
+            System.out.print(" [" + leaf.content + "]");
         }
         
         System.out.println();
@@ -24,4 +24,25 @@ public class Printer {
             }
         }
     }
+    
+	private static String formatDouble(double doubleValue) {
+	    int length = 6;
+	    String stringValue = Double.toString(doubleValue);
+	    
+	    // If value is longer than the required length, truncate
+	    if (stringValue.length() > length) {
+	        return stringValue.substring(0, length);
+	    }
+	    // If value contains only spaces, return as is
+	    if (stringValue.trim().length() == 0) {
+	        return stringValue;
+	    }
+
+	    // Pad the string with zeros (to the right) until it reaches the specified length
+	    StringBuilder paddedValue = new StringBuilder(stringValue);
+	    while (paddedValue.length() < length) {
+	        paddedValue.append("0");
+	    }
+	    return paddedValue.toString();
+	}
 }

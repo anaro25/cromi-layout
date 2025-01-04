@@ -3,7 +3,7 @@ package x;
 public class Main {
 	
 	public static void main(String[] args) {
-		Tree myTree = new Tree(new Node(1.0)); // create rootNode with 1.0 freq
+		Tree myTree = new Tree(new Node(100.0)); // create rootNode with 100% freq
 		Init.initNodes(myTree);
 		
 		Printer.printTree(myTree.getRootNode(), 0); // initial depth = 0
