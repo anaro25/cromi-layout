@@ -2,10 +2,10 @@ package x;
 import java.util.ArrayList;
 
 public class Tree {
-	Node rootNode;
+	Node root;
 	
-	public Tree(Node rootNode) {
-		this.rootNode = rootNode;
+	public Tree(Node root) {
+		this.root = root;
 	}
 }
 
@@ -22,6 +22,11 @@ class Node {
 	public void addChild(Node child) {
 		children.add(child);
 	}
+	/*
+	public void insertChildSorted(Node newChild) {
+		for ()
+	}
+	*/
 }
 
 class LeafNode extends Node {

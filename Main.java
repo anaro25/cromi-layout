@@ -6,9 +6,9 @@ public class Main {
 		Tree myTree = new Tree(new Node(100.0)); // create rootNode with 100% freq
 		Init.initNodes(myTree);
 		
-		// Huffman.createHuffmanTree(myTree);
+		Huffman.createHuffmanTree(myTree.root);
 		
-		Printer.printTree(myTree.rootNode, 0); // initial depth = 0
+		Printer.printTree(myTree.root, 0); // initial depth = 0
 	}
 }
 

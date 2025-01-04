@@ -4,13 +4,13 @@ public class Init {
 
 	public static void initNodes(Tree myTree) {
 		for (int x = 1; x <= Data.numLeaves; x++) {
-			Node rootNode = myTree.rootNode; // pass reference
+			Node root = myTree.root; // pass reference
 			
 			double y = Data.p((double) x);
-			double freq = (y * rootNode.freq) / Init.getRawSum(); // normalize
+			double freq = (y * root.freq) / Init.getRawSum(); // normalize
 			
 			String content = Formatter.formatContent(x);
-			rootNode.addChild(new LeafNode(freq, content));
+			root.addChild(new LeafNode(freq, content));
 		}
 	}
 	
