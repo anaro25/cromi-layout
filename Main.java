@@ -8,7 +8,9 @@ public class Main {
 		
 		Huffman.createHuffmanTree(myTree.root);
 		
-		Printer.printTree(myTree.root, 0); // initial depth = 0
+		System.out.println("Number of non-null levels: " + (myTree.getHeight()-1));
+		
+		//Printer.printTree(myTree.root, 0); // initial depth = 0
 	}
 }
 

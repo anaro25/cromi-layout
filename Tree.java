@@ -7,6 +7,13 @@ public class Tree {
 	public Tree(Node root) {
 		this.root = root;
 	}
+	
+	public int getHeight() {
+        if (root == null) {
+            return 0; // Empty tree
+        }
+        return root.getHeight();
+    }
 }
 
 class Node {
@@ -31,13 +38,25 @@ class Node {
 	}
 	
 	public void insertChildSorted(Node newChild) {
-		for (int i = 0; i < children.size()-1; i++) {
+		for (int i = 0; i < children.size(); i++) {
 			if (newChild.freq > children.get(i).freq) {
 				children.add(i, newChild);
 				break;	
 			}
 		}
 	}
+	
+    public int getHeight() {
+        if (children.isEmpty()) {
+            return 1; // A node without children has height 1
+        }
+
+        int maxHeight = 0;
+        for (Node child : children) {
+            maxHeight = Math.max(maxHeight, child.getHeight());
+        }
+        return maxHeight + 1; // Add 1 for the current node
+    }
 }
 
 class LeafNode extends Node {
