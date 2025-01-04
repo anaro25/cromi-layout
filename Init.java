@@ -28,6 +28,9 @@ class Data {
 	static int numLeaves = 106; // number of keys
 	static int degree = 9; // degree-ary
 	
+	static String[] symbols = {"a","b","c","d","e","f","g","h","i","j"};
+    static double[] symbolFreqs = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	
 	public static double p(double x, double b) { // Desmos exp regression
 		return 10.05217 * Math.pow(0.906822, b*x);
 	}
