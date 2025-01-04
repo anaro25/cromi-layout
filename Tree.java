@@ -7,16 +7,12 @@ public class Tree {
 	public Tree(Node rootNode) {
 		this.rootNode = rootNode;
 	}
-	
-	public Node getRootNode() {
-		return rootNode;
-	}
 }
 
 class Node {
-	//String symbol; // "di", "da" 
+	// String symbol; // "di", "da" 
 	double freq;
-	ArrayList<Node> children;
+	public ArrayList<Node> children;
 	
 	public Node(double freq) {
 		this.freq = freq;
@@ -30,7 +26,7 @@ class Node {
 
 class LeafNode extends Node {
 	String content; // meaning (temporarily 001, etc.)
-	//String codeWord; // "didati"
+	// String codeWord; // "didati"
 	
 	public LeafNode(double freq, String content) {
 		super(freq); // call super's contructor
