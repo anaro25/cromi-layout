@@ -4,17 +4,20 @@ import java.util.ArrayList;
 public class Huffman {
 	
 	public static void createHuffmanTree(Node root) {
-		// save each least freq node in an ArrayList
-			// remove root's least freq children
-		ArrayList<Node> leastFreqNodes = Huffman.getLeastFreqNodes(root);
-		double sumLeastFreq = Huffman.getSumNodes(leastFreqNodes);
 		
-		// create new child of root, insert in root.children ArrayList
-		Node newRootChild = new Node(sumLeastFreq);
-		root.insertChildSorted(newRootChild);
-		
-		// add the leastFreqNodes as children of Node newRootChild
-		newRootChild.addChildren(leastFreqNodes);
+		while (root.children.size() > Data.degree + 1) {
+			// save each least freq node in an ArrayList
+				// remove root's least freq children
+			ArrayList<Node> leastFreqNodes = Huffman.getLeastFreqNodes(root);
+			double sumLeastFreq = Huffman.getSumNodes(leastFreqNodes);
+			
+			// create new child of root, insert in root.children ArrayList
+			Node newRootChild = new Node(sumLeastFreq);
+			root.insertChildSorted(newRootChild);
+			
+			// add the leastFreqNodes as children of Node newRootChild
+			newRootChild.addChildren(leastFreqNodes);
+		}
 	}
 	
 	private static double getSumNodes(ArrayList<Node> nodes) {

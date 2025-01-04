@@ -24,7 +24,10 @@ class Node {
 	}
 	
 	public void addChildren(ArrayList<Node> children) {
-		this.children = children;
+		// add in reverse, since children is ascending
+		for (int i = children.size()-1; i >= 0; i--) {
+			this.children.add(children.get(i));
+		}
 	}
 	
 	public void insertChildSorted(Node newChild) {
