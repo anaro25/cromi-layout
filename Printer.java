@@ -1,54 +1,27 @@
 package x;
-import java.util.ArrayList;
 
-class Printer {
-	public static void printSheet() {
-		for (int row = 0; row < Data.freqSheet.size(); row++) {
-			for (Double cell : Data.freqSheet.get(row)) {
-				if (cell == null) {
-					System.out.print("            ");
-				}
-				else { // if not null
-					System.out.print(" |-- " + Printer.formatDouble(cell));
-				}
-			}
-			if (Data.keyCodes.get(row) != null) {
-				System.out.print(" [ " + Data.keyCodes.get(row) + " ] ");
-			}
-			System.out.println();
-		}
-	}
-	
-	public static String formatFunctionLabel(int x) { // 001, 002, etc.
-		String label = Integer.toString(x);
-		int maxLabelLength = 3;
-		
-		for (int i = 0; i < (maxLabelLength - label.length())+1; i++) {
-			label = "0" + label;
-		}
-		
-		return label;
-	}
-	
-	private static String formatDouble(double doubleValue) {
-	    int length = 7;
-	    String stringValue = Double.toString(doubleValue);
-	    
-	    // If value is already longer than the required length, truncate it
-	    if (stringValue.length() > length) {
-	        return stringValue.substring(0, length);
-	    }
-	    // If value contains only spaces (empty or made of spaces), return as is
-	    if (stringValue.trim().length() == 0) {
-	        return stringValue;
-	    }
+public class Printer {
+	// to print tree in indentation style, use preorder traversal
+		// basically just circling the tree counter-clockwise
 
-	    // Pad the string with zeros (to the right) until it reaches the specified length
-	    StringBuilder paddedValue = new StringBuilder(stringValue);
-	    while (paddedValue.length() < length) {
-	        paddedValue.append("0");
-	    }
-	    return paddedValue.toString();
-	}
-	
+    public static void printTree(Node node, int depth) { // recursive
+    	int indent = 8;
+        // print freq
+        System.out.print(" ".repeat(depth * indent));
+        System.out.print(node.freq);
+
+        if (node instanceof LeafNode) {
+            LeafNode leaf = (LeafNode) node;
+            System.out.print(" " + leaf.content);
+        }
+        
+        System.out.println();
+
+        // Recursively print children nodes
+        if (node.children != null) {
+            for (Node child : node.children) {
+                printTree(child, depth + 1);
+            }
+        }
+    }
 }
