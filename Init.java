@@ -25,11 +25,11 @@ public class Init {
 }
 
 class Data {
-	static int numLeaves = 90; // number of keys
+	static int numLeaves = 106; // number of keys
 	static int degree = 9; // degree-ary
 	
 	public static double p(double x, double b) { // Desmos exp regression
-		return 10.04681 * Math.pow(0.906906, b*x);
+		return 10.05217 * Math.pow(0.906822, b*x);
 	}
 }
 
