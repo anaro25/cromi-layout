@@ -7,20 +7,60 @@ public class CommonSfbChecker {
     
     public static void checkCommonSfb() {
         CommonSfbChecker.declareWordEndings();
+        CommonSfbChecker.declareCommonSfbs();
+        CommonSfbChecker.declareFunctionSpaceSfbs();
+        
         CommonSfbChecker.printCommonSfb();
     }
     
     private static void declareWordEndings() {
-        String wordEndings = "ESTDNRYFLOGHAKMPUW";
+        String wordStarts = "TOAWBCDSFMRHIYEGLNPUJK";
+        for (int i = 0; i < wordStarts.length(); i++) {
+            String secondFuncStr = String.valueOf(wordStarts.charAt(i));
+            CommonSfbChecker.addCommonSfb("Shift", secondFuncStr);
+        }
         
+        String wordEndings = "ESTDNRYFLOGHAKMPUW";
         for (int i = 0; i < wordEndings.length(); i++) {
             String firstFuncStr = String.valueOf(wordEndings.charAt(i));
-            LeafNode firstFunc = CommonSfbChecker.getLeafNodeFromContent(firstFuncStr);
-            LeafNode secondFunc = CommonSfbChecker.getLeafNodeFromContent("Space");
-            
-            CommonSfb newCommonSfb = new CommonSfb(firstFunc, secondFunc);
-            commonSfbList.add(newCommonSfb);
+            CommonSfbChecker.addCommonSfb(firstFuncStr, "Space");
         }
+    }
+    
+    private static void declareFunctionSpaceSfbs() {
+        String[] listFirstFuncStr = {
+            "Right-paren","Period","Comma","Equal","Hyphen","Slash","Semicolon",
+            "Asterisk","Colon","Right-angle"
+        };
+        for (String firstFuncStr : listFirstFuncStr) {
+            CommonSfbChecker.addCommonSfb(firstFuncStr, "Space");
+        }
+    }
+    
+    private static void declareCommonSfbs() {
+        //CommonSfbChecker.addCommonSfb("Shift", );
+        /*
+        CommonSfbChecker.addCommonSfb();
+        CommonSfbChecker.addCommonSfb();
+        CommonSfbChecker.addCommonSfb();
+        CommonSfbChecker.addCommonSfb();
+        CommonSfbChecker.addCommonSfb();
+        CommonSfbChecker.addCommonSfb();
+        CommonSfbChecker.addCommonSfb();
+        CommonSfbChecker.addCommonSfb();
+        CommonSfbChecker.addCommonSfb();
+        CommonSfbChecker.addCommonSfb();
+        CommonSfbChecker.addCommonSfb();
+        CommonSfbChecker.addCommonSfb();
+        */
+        
+    }
+    
+    private static void addCommonSfb(String firstFuncStr, String secondFuncStr) {
+        LeafNode firstFunc = CommonSfbChecker.getLeafNodeFromContent(firstFuncStr);
+        LeafNode secondFunc = CommonSfbChecker.getLeafNodeFromContent(secondFuncStr);
+        
+        commonSfbList.add(new CommonSfb(firstFunc, secondFunc));
     }
     
     private static void printCommonSfb() {
