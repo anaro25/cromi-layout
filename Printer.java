@@ -25,7 +25,7 @@ public class Printer {
         }
     }
     
-	private static String formatDouble(double doubleValue) {
+	public static String formatDouble(double doubleValue) {
 	    int length = 6;
 	    String stringValue = Double.toString(doubleValue);
 	    

@@ -15,11 +15,12 @@ public class Tree {
 }
 
 class Node {
-    String symbol; // "di", "da"
+    char symbol; // 'a', 'b'
+    String fingerSymbol; // "di", "da"
     double freq;
     ArrayList<Node> children;
     Node parent;
-    int siblingIdx = -1;
+    int siblingIdx;
 
     public Node(double freq) {
         this.freq = freq;
@@ -61,14 +62,6 @@ class Node {
             maxHeight = Math.max(maxHeight, child.getHeight());
         }
         return maxHeight + 1; // Add 1 for the current node
-    }
-
-    public boolean isLastSibling() {
-        if (parent == null) {
-            return false; // Root node has no siblings
-        }
-        ArrayList<Node> siblings = parent.children;
-        return siblings.get(siblings.size() - 1) == this; // Check if this node is the last sibling
     }
 }
 
