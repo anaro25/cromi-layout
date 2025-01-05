@@ -15,8 +15,10 @@ public class Main {
 		SymbolAssigner.buildLevelOrderSiblings(myTree);
 		SymbolAssigner.assignSymbols(Data.levelOrderSiblings);
 		
-		Test.printSumAllNodes();
-		Test.printSumSymbols();
+		Test.printRankedContent();
+		
+		//Test.printSumAllNodes();
+		//Test.printSumSymbols();
 		
 		//Test.printLevelOrder();
 		//Printer.printTree(myTree.root, 0); // initial depth = 0

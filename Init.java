@@ -1,16 +1,32 @@
 package x;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+
 public class Init {
 
+    private static void buildRankedContent() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("RankedContent.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Data.rankedContent.add(line);
+            }
+        } catch (Exception e) {
+            System.err.println("Error reading file: " + e.getMessage());
+        }
+    }
+
 	public static void initRootChildren(Tree myTree, double b) {
+		Init.buildRankedContent();
+		
 		for (int x = 1; x <= InitData.numLeaves; x++) {
 			Node root = myTree.root; // pass reference
 			
 			double y = InitData.p((double) x, b);
 			double freq = (y * 100) / Init.getRawSum(b); // normalize
 			
-			String content = Init.formatContent(x);
-			root.addChild(new LeafNode(freq, content));
+			root.addChild(new LeafNode(freq, Data.rankedContent.get(x-1)));
 		}
 	}
 	
@@ -21,16 +37,6 @@ public class Init {
 			rawSum += InitData.p((double) x, b);
 		}
 		return rawSum;
-	}
-	
-	private static String formatContent(int x) { // 001, 002, etc.
-		String content = Integer.toString(x);
-		int maxContentLength = 3;
-		
-		for (int i = 0; i < (maxContentLength - content.length())+1; i++) {
-			content = "0" + content;
-		}
-		return content;
 	}
 }
 

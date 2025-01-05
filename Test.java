@@ -30,4 +30,10 @@ public class Test {
 		}
 		System.out.println("sumSymbols: " + sumSymbols);
 	}
+	
+	public static void printRankedContent() {
+		for (String content : Data.rankedContent) {
+			System.out.println(content);
+		}
+	}
 }

@@ -75,11 +75,6 @@ public class SymbolAssigner {
                         for (int symbolIdx = 0; symbolIdx < symbolList.size(); symbolIdx++) {
                             if (currentNode.symbolName == symbolList.get(symbolIdx).name) {
                                 symbolList.get(symbolIdx).freq += currentNode.freq;
-                                
-                                // test print
-                                System.out.print("(" + currentNode.symbolName + ")");
-                                System.out.print(" " + Printer.formatDouble(symbolList.get(symbolIdx).freq));
-                                System.out.println();
                             }
                         }
                         currentSymbolIdx++;
@@ -88,8 +83,6 @@ public class SymbolAssigner {
                 } while (!isSymbolAssigned);
             }
             SymbolAssigner.sortSymbolFreqs();
-            // test
-            System.out.println();
         }
         return finalSumSymbols;
     }
