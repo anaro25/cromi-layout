@@ -4,33 +4,29 @@ import java.util.ArrayList;
 public class AdjChecker {
     
     static ArrayList<Adj> adjList = new ArrayList<>();
-    static String wordEndings = "ESTDNRYFLOGHAKMPUW";
     
-    public static void initAdjChecker(Node root) {
-        AdjChecker.buildLevelOrderLeafNodes();
-        AdjChecker.buildPaths(root);
+    public static void checkAdjFuncs(Node root) {
+        Builder.buildLevelOrderLeafNodes();
+        Builder.buildPaths(root);
+        AdjChecker.declareWordEndings();
+        
+        AdjChecker.printAdj();
+    }
+    
+    private static void declareWordEndings() {
+        String wordEndings = "ESTDNRYFLOGHAKMPUW";
         
         for (int i = 0; i < wordEndings.length(); i++) {
-            LeafNode firstFunc = AdjChecker.getLeafNodeFromContent("Space");
-            String secondFuncStr = String.valueOf(wordEndings.charAt(i));
-            LeafNode secondFunc = AdjChecker.getLeafNodeFromContent(secondFuncStr);
+            String firstFuncStr = String.valueOf(wordEndings.charAt(i));
+            LeafNode firstFunc = AdjChecker.getLeafNodeFromContent(firstFuncStr);
+            LeafNode secondFunc = AdjChecker.getLeafNodeFromContent("Space");
             
             Adj newAdj = new Adj(firstFunc, secondFunc);
             adjList.add(newAdj);
         }
     }
     
-    private static void buildPaths(Node root) {
-        for (LeafNode leafNode : Data.levelOrderLeafNodes) {
-            Node currentNode = leafNode;
-            while (currentNode != root) {
-                leafNode.path.add(0, currentNode);
-                currentNode = currentNode.parent;
-            }
-        }
-    }
-    
-    public static void printAdj() {
+    private static void printAdj() {
         for (Adj adj : AdjChecker.adjList) {
             System.out.print("{" + adj.firstFunc.getStrPath() + "}");
             System.out.print(" + ");
@@ -39,7 +35,6 @@ public class AdjChecker {
             System.out.print("[" + adj.firstFunc.content + "]");
             System.out.print(" + ");
             System.out.print("[" + adj.secondFunc.content + "]");
-            
             System.out.println();
         }
     }
@@ -51,16 +46,6 @@ public class AdjChecker {
             }
         }
         return null;
-    }
-    
-    public static void buildLevelOrderLeafNodes() {
-        for (ArrayList<Node> siblings : Data.levelOrderSiblings) {
-            for (Node node : siblings) {
-                if (node instanceof LeafNode) {
-                    Data.levelOrderLeafNodes.add((LeafNode) node); // typecast to LeafNode
-                }
-            }
-        }
     }
 }
 

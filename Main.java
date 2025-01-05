@@ -14,7 +14,6 @@ public class Main {
 		SymbolAssigner.buildLevelOrderSiblings(myTree);
 		SymbolAssigner.assignSymbols(Data.levelOrderSiblings);
 		
-		AdjChecker.initAdjChecker(myTree.root);
-		AdjChecker.printAdj();
+		AdjChecker.checkAdjFuncs(myTree.root);
 	}
 }
