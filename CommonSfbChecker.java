@@ -5,11 +5,8 @@ public class CommonSfbChecker {
     
     static ArrayList<CommonSfb> commonSfbList = new ArrayList<>();
     
-    public static void checkCommonSfb(Node root) {
-        Builder.buildLevelOrderLeafNodes();
-        Builder.buildPaths(root);
+    public static void checkCommonSfb() {
         CommonSfbChecker.declareWordEndings();
-        
         CommonSfbChecker.printCommonSfb();
     }
     
@@ -35,8 +32,23 @@ public class CommonSfbChecker {
             System.out.print("[" + commonSfb.firstFunc.content + "]");
             System.out.print(" + ");
             System.out.print("[" + commonSfb.secondFunc.content + "]");
+            
+            if (CommonSfbChecker.isAdjacent(commonSfb.firstFunc, commonSfb.secondFunc)) {
+                System.out.print(" | " + "Adjacent!");
+            }
+            
             System.out.println();
         }
+    }
+    
+    private static boolean isAdjacent(LeafNode firstFunc, LeafNode secondFunc) {
+        Symbol lastSymbolOfFirstFunc = firstFunc.path.get(firstFunc.path.size()-1).symbol;
+        Symbol firstSymbolOfSecondFunc = secondFunc.path.get(0).symbol;
+        
+        if (lastSymbolOfFirstFunc == firstSymbolOfSecondFunc) {
+            return true;
+        }
+        return false;
     }
 
     private static LeafNode getLeafNodeFromContent(String content) {

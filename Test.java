@@ -32,12 +32,6 @@ public class Test {
 		System.out.println("sumSymbols: " + sumSymbols);
 	}
 	
-	public static void printRankedContent() {
-		for (String content : Data.rankedContent) {
-			System.out.println(content);
-		}
-	}
-	
 	public static void performHuffmanMultiB() {
 		double b = 0.3;
 		final double b_init = b;
@@ -55,7 +49,9 @@ public class Test {
 		int idx = 1;
 		
 		for (LeafNode leafNode : Data.levelOrderLeafNodes) {
-			System.out.print(idx + ": " + leafNode.content);
+			System.out.print(" (" + idx + ")");
+			System.out.print(" {" + leafNode.getStrPath() + "}");
+			System.out.print(" [" + leafNode.content + "]");
 			System.out.println();
 			idx++;
 		}

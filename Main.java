@@ -13,10 +13,13 @@ public class Main {
 		Huffman.createHuffmanTree(myTree.root);
 		SymbolAssigner.assignSymbols(myTree);
 		
-		Printer.printTree(myTree.root, 0);
+		//Printer.printTree(myTree.root, 0);
+		//assignContent(myTree.root);
 		
-		//Test.printLevelOrderSiblings();
+		Builder.buildLevelOrderLeafNodes();
+		Builder.buildPaths(myTree.root);
+		//Test.printLevelOrderLeafNodes();
 		
-		//CommonSfb.checkCommonSfb(myTree.root);
+		CommonSfbChecker.checkCommonSfb();
 	}
 }
