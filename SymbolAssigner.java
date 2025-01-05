@@ -21,36 +21,11 @@ public class SymbolAssigner {
             }
         });
     }
-    
-    // breadth-first traversal
-    public static void buildLevelOrderSiblings(Tree myTree) {
-        ArrayList<Node> currentLevel = new ArrayList<>();
-        currentLevel.add(myTree.root);
 
-        while (!currentLevel.isEmpty()) {
-            ArrayList<Node> nextLevel = new ArrayList<>();
-            for (Node node : currentLevel) {
-                if (node != myTree.root) { // exclude root
-                    
-                    if (node.siblingIdx == 0) { // if first sibling
-                        Data.levelOrderSiblings.add(new ArrayList<Node>()); // add new sibling list
-                    }
-                    
-                    // add node to the current sibling group
-                    int currentSiblingGroupIdx = Data.levelOrderSiblings.size()-1;
-                    Data.levelOrderSiblings.get(currentSiblingGroupIdx).add(node);
-                }
-                nextLevel.addAll(node.children);
-            }
-            currentLevel = nextLevel; // Move to the next level
-        }
-    }
-
-    public static double assignSymbols(ArrayList<ArrayList<Node>> levelOrderSiblings) {
-        // test
-        double finalSumSymbols = 0;
+    public static void assignSymbols(Tree myTree) {
+        Builder.buildLevelOrderSiblings(myTree);
         
-        for (ArrayList<Node> siblingGroup : levelOrderSiblings) {
+        for (ArrayList<Node> siblingGroup : Data.levelOrderSiblings) {
             int currentSymbolIdx = 0;
             
             // assign symbols and add values
@@ -69,6 +44,7 @@ public class SymbolAssigner {
                     else {
                         // assign symbols
                         currentNode.symbol = currentSymbol;
+                        //System.out.print(currentNode.symbol.letterName + " ");
                         
                         // add current node's freq to the freq of the symbol
                             // that matches current node's symbol
@@ -84,7 +60,6 @@ public class SymbolAssigner {
             }
             SymbolAssigner.sortSymbolFreqs();
         }
-        return finalSumSymbols;
     }
 }
 

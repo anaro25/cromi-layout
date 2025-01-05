@@ -11,9 +11,12 @@ public class Main {
 		Tree myTree = new Tree(new Node(0)); // create rootNode with 0 freq
 		Init.initRootChildren(myTree, b);
 		Huffman.createHuffmanTree(myTree.root);
-		SymbolAssigner.buildLevelOrderSiblings(myTree);
-		SymbolAssigner.assignSymbols(Data.levelOrderSiblings);
+		SymbolAssigner.assignSymbols(myTree);
 		
-		AdjChecker.checkAdjFuncs(myTree.root);
+		Printer.printTree(myTree.root, 0);
+		
+		//Test.printLevelOrderSiblings();
+		
+		//AdjChecker.checkAdjFuncs(myTree.root);
 	}
 }
