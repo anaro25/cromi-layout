@@ -44,7 +44,6 @@ public class SymbolAssigner {
                     else {
                         // assign symbols
                         currentNode.symbol = currentSymbol;
-                        //System.out.print(currentNode.symbol.letterName + " ");
                         
                         // add current node's freq to the freq of the symbol
                             // that matches current node's symbol

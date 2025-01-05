@@ -17,6 +17,6 @@ public class Main {
 		
 		//Test.printLevelOrderSiblings();
 		
-		//AdjChecker.checkAdjFuncs(myTree.root);
+		//CommonSfb.checkCommonSfb(myTree.root);
 	}
 }
