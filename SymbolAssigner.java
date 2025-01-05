@@ -49,7 +49,10 @@ public class SymbolAssigner {
         return levelOrderSiblings;
     }
 
-    public static void assignSymbols(ArrayList<ArrayList<Node>> levelOrderSiblings) {
+    public static double assignSymbols(ArrayList<ArrayList<Node>> levelOrderSiblings) {
+        // test
+        double finalSumSymbols = 0;
+        
         for (ArrayList<Node> siblingGroup : levelOrderSiblings) {
             int currentSymbolIdx = 0;
             
@@ -65,8 +68,6 @@ public class SymbolAssigner {
                     if (currentNode.parent.symbolName == currentSymbol.name) {
                         currentSymbolIdx++;
                         isSymbolAssigned = false;
-                        
-                        System.out.println("x");
                     }
                     else {
                         // assign symbols
@@ -77,19 +78,23 @@ public class SymbolAssigner {
                         for (int symbolIdx = 0; symbolIdx < symbolList.size(); symbolIdx++) {
                             if (currentNode.symbolName == symbolList.get(symbolIdx).name) {
                                 symbolList.get(symbolIdx).freq += currentNode.freq;
+                                
+                                // test print
+                                System.out.print("(" + currentNode.symbolName + ")");
+                                System.out.print(" " + Printer.formatDouble(symbolList.get(symbolIdx).freq));
+                                System.out.println();
                             }
                         }
                         currentSymbolIdx++;
                         isSymbolAssigned = true;
                     }
                 } while (!isSymbolAssigned);
-                
             }
             SymbolAssigner.sortSymbolFreqs();
-            
-            // temp
+            // test
             System.out.println();
         }
+        return finalSumSymbols;
     }
 }
 
