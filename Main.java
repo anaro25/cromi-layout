@@ -8,17 +8,18 @@ public class Main {
 	}
 	
 	private static void performHuffman(double b) {
-		Tree myTree = new Tree(new Node(100.0)); // create rootNode with 100% freq
+		Tree myTree = new Tree(new Node(-1)); // create rootNode with 100% freq
 		Init.initNodes(myTree, b);
 		Huffman.createHuffmanTree(myTree.root);
 		
-		ArrayList<ArrayList<Node>> levelOrderSiblings = Symbols.getLevelOrderSiblings(myTree);
+		//ArrayList<ArrayList<Node>> levelOrderSiblings = Symbols.getLevelOrderSiblings(myTree);
 		//Symbols.assignSymbols(levelOrderSiblings);
 		
 		//System.out.print("\n" + "b = " + b);
 		//System.out.print(" | height = " + (myTree.getHeight()-1));
 		//System.out.println("\n");
-		//Printer.printTree(myTree.root, 0); // initial depth = 0
+		
+		Printer.printTree(myTree.root, 0); // initial depth = 0
 	}
 	
 	private static void performHuffmanMultiB() {

@@ -19,7 +19,7 @@ class Node {
     double freq;
     ArrayList<Node> children;
     Node parent;
-    int siblingIdx;
+    int siblingIdx = -1;
 
     public Node(double freq) {
         this.freq = freq;

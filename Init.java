@@ -7,7 +7,7 @@ public class Init {
 			Node root = myTree.root; // pass reference
 			
 			double y = Data.p((double) x, b);
-			double freq = (y * root.freq) / Init.getRawSum(b); // normalize
+			double freq = (y * 100) / Init.getRawSum(b); // normalize
 			
 			String content = Init.formatContent(x);
 			root.addChild(new LeafNode(freq, content));
