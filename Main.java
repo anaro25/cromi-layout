@@ -1,4 +1,5 @@
 package x;
+import java.util.ArrayList;
 
 public class Main {
 	
@@ -11,12 +12,13 @@ public class Main {
 		Init.initNodes(myTree, b);
 		Huffman.createHuffmanTree(myTree.root);
 		
+		ArrayList<ArrayList<Node>> levelOrderSiblings = Symbols.getLevelOrderSiblings(myTree);
+		//Symbols.assignSymbols(levelOrderSiblings);
+		
 		//System.out.print("\n" + "b = " + b);
 		//System.out.print(" | height = " + (myTree.getHeight()-1));
 		//System.out.println("\n");
 		//Printer.printTree(myTree.root, 0); // initial depth = 0
-		
-		Symbols.assignSymbols(myTree);
 	}
 	
 	private static void performHuffmanMultiB() {

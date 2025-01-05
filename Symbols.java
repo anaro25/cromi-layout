@@ -7,11 +7,7 @@ public class Symbols {
     static double[] symbolFreqs = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     
     // breadth-first traversal
-    public static void assignSymbols(Tree myTree) {
-        if (myTree.root == null) {
-            return; // Tree is empty
-        }
-
+    public static ArrayList<ArrayList<Node>> getLevelOrderSiblings(Tree myTree) {
         ArrayList<Node> currentLevel = new ArrayList<>();
         currentLevel.add(myTree.root);
 
@@ -19,7 +15,7 @@ public class Symbols {
             ArrayList<Node> nextLevel = new ArrayList<>();
             for (Node node : currentLevel) {
                 if (node != myTree.root) { // exclude root
-                    System.out.println(node.freq);
+                    System.out.println(node.siblingIdx + " | " + node.freq);
                 }
                 
                 nextLevel.addAll(node.children);
@@ -31,6 +27,14 @@ public class Symbols {
             }
             currentLevel = nextLevel; // Move to the next level
         }
+        
+        // temp
+        return new ArrayList<ArrayList<Node>>();
     }
+    /*
+    public static void assignSymbols(ArrayList<ArrayList<Node>> levelOrderSiblings) {
+        
+    }
+    */
 }
 

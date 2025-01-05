@@ -19,6 +19,7 @@ class Node {
     double freq;
     ArrayList<Node> children;
     Node parent;
+    int siblingIdx;
 
     public Node(double freq) {
         this.freq = freq;
@@ -33,9 +34,10 @@ class Node {
 
     public void addChildren(ArrayList<Node> children) {
         // Add in reverse, since children are ascending
-        for (int i = children.size() - 1; i >= 0; i--) {
-            Node child = children.get(i);
+        for (int i = 0; i < children.size(); i++) {
+            Node child = children.get((children.size()-1) - i);
             child.parent = this; // Set parent of each child
+            child.siblingIdx = i;
             this.children.add(child);
         }
     }
