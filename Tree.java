@@ -15,8 +15,7 @@ public class Tree {
 }
 
 class Node {
-    char symbolName = 'X'; // 'a', 'b'
-    String fingerSymbol; // "di", "da"
+    Symbol symbol;
     double freq;
     ArrayList<Node> children;
     Node parent;
@@ -63,14 +62,35 @@ class Node {
         }
         return maxHeight + 1; // Add 1 for the current node
     }
+    /*
+    public ArrayList<Symbol> getPath(Node root, Node node) {
+        ArrayList<Symbol> path = new ArrayList<>();
+        Node currentNode = node;
+        
+        while (currentNode != root) {
+            path.add(0, currentNode.symbol); // insert at start
+            currentNode = currentNode.parent;
+        }
+    }
+    */
 }
 
 class LeafNode extends Node {
     String content; // Meaning (temporarily 001, etc.)
-    // String codeWord; // "didati"
+    ArrayList<Node> path;
 
     public LeafNode(double freq, String content) {
         super(freq); // Call super's constructor
         this.content = content;
+        path = new ArrayList<>();
+    }
+    
+    public String getStrPath() {
+        String strPath = "";
+        
+        for (Node node : path) {
+            strPath += String.valueOf(node.symbol.letterName);
+        }
+        return strPath;
     }
 }

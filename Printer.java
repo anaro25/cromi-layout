@@ -8,7 +8,7 @@ public class Printer {
     	int indent = 6;
         // print freq
         System.out.print(" ".repeat(depth * indent));
-        System.out.print("|--(" + node.symbolName + ") ");
+        System.out.print("|--(" + String.valueOf(node.symbol.letterName) + ") ");
         System.out.print(formatDouble(node.freq));
 
         if (node instanceof LeafNode) {

@@ -7,9 +7,9 @@ public class SymbolAssigner {
     static ArrayList<Symbol> symbolList = new ArrayList<>();
     
     static { 
-        char[] symbolNames = {'a','b','c','d','e','f','g','h','i','j'};
-        for (int i = 0; i < symbolNames.length; i++) {
-            symbolList.add(new Symbol(symbolNames[i], 0.0));
+        char[] letterNames = {'a','b','c','d','e','f','g','h','i','j'};
+        for (int i = 0; i < letterNames.length; i++) {
+            symbolList.add(new Symbol(letterNames[i], 0.0));
         }
     }
     
@@ -62,18 +62,18 @@ public class SymbolAssigner {
                     Symbol currentSymbol = SymbolAssigner.symbolList.get(currentSymbolIdx);
                     
                     // if node and parent have the same symbolName
-                    if (currentNode.parent.symbolName == currentSymbol.name) {
+                    if (currentNode.parent.symbol == currentSymbol) {
                         currentSymbolIdx++;
                         isSymbolAssigned = false;
                     }
                     else {
                         // assign symbols
-                        currentNode.symbolName = currentSymbol.name;
+                        currentNode.symbol = currentSymbol;
                         
                         // add current node's freq to the freq of the symbol
                             // that matches current node's symbol
                         for (int symbolIdx = 0; symbolIdx < symbolList.size(); symbolIdx++) {
-                            if (currentNode.symbolName == symbolList.get(symbolIdx).name) {
+                            if (currentNode.symbol == symbolList.get(symbolIdx)) {
                                 symbolList.get(symbolIdx).freq += currentNode.freq;
                             }
                         }
@@ -89,11 +89,12 @@ public class SymbolAssigner {
 }
 
 class Symbol {
-    char name;
+    char letterName;
+    String fingerName;
     double freq;
 
-    public Symbol(char name, double freq) {
-        this.name = name;
+    public Symbol(char letterName, double freq) {
+        this.letterName = letterName;
         this.freq = freq;
     }
 }

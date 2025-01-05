@@ -1,4 +1,5 @@
 package x;
+
 import java.util.ArrayList;
 
 public class Data {
@@ -6,4 +7,5 @@ public class Data {
 	
 	static ArrayList<String> rankedContent = new ArrayList<>();
 	static ArrayList<ArrayList<Node>> levelOrderSiblings = new ArrayList<>();
+	static ArrayList<LeafNode> levelOrderLeafNodes = new ArrayList<>();
 }

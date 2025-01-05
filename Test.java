@@ -1,12 +1,13 @@
 package x;
+
 import java.util.ArrayList;
 
 public class Test {
 		
-	public static void printLevelOrder() {
+	public static void printLevelOrderSiblings() {
 		for (ArrayList<Node> siblingGroup : Data.levelOrderSiblings) {
             for (Node node : siblingGroup) {
-            	System.out.print("(" + node.symbolName + ") ");
+            	System.out.print("(" + node.symbol.letterName + ") ");
                 System.out.print(Printer.formatDouble(node.freq) + "\n");
             }
             System.out.println();
@@ -34,6 +35,29 @@ public class Test {
 	public static void printRankedContent() {
 		for (String content : Data.rankedContent) {
 			System.out.println(content);
+		}
+	}
+	
+	public static void performHuffmanMultiB() {
+		double b = 0.3;
+		final double b_init = b;
+		
+		for (int i = 0; i < 15; i++) {
+			double i_double = (double) i;
+			b = b_init + (i_double * 0.05);
+			b = Math.round(b * 100.0) / 100.0; // Round to 2 decimal places
+			
+			Main.buildCromi(b);
+		}
+	}
+	
+	public static void printLevelOrderLeafNodes() {
+		int idx = 1;
+		
+		for (LeafNode leafNode : Data.levelOrderLeafNodes) {
+			System.out.print(idx + ": " + leafNode.content);
+			System.out.println();
+			idx++;
 		}
 	}
 }
