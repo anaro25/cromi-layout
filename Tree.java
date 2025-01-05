@@ -10,9 +10,6 @@ public class Tree {
     }
 
     public int getHeight() {
-        if (root == null) {
-            return 0; // Empty tree
-        }
         return root.getHeight();
     }
 }

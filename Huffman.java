@@ -25,7 +25,6 @@ public class Huffman {
 		for (Node node : nodes) {
 			sum += node.freq;
 		}
-		
 		return sum;
 	}
 	

@@ -16,7 +16,7 @@ public class Main {
 		//System.out.println("\n");
 		//Printer.printTree(myTree.root, 0); // initial depth = 0
 		
-		Cromi.assignSymbols(myTree);
+		Symbols.assignSymbols(myTree);
 	}
 	
 	private static void performHuffmanMultiB() {

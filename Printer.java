@@ -1,9 +1,8 @@
 package x;
 
 public class Printer {
+	
 	// to print tree in indentation style, use preorder traversal
-		// basically just circling the tree counter-clockwise
-
     public static void printTree(Node node, int depth) { // recursive
     	int indent = 6;
         // print freq

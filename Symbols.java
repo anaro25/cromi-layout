@@ -1,7 +1,10 @@
 package x;
 import java.util.ArrayList;
 
-public class Cromi {
+public class Symbols {
+    
+    static String[] symbols = {"a","b","c","d","e","f","g","h","i","j"};
+    static double[] symbolFreqs = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     
     // breadth-first traversal
     public static void assignSymbols(Tree myTree) {
@@ -15,7 +18,10 @@ public class Cromi {
         while (!currentLevel.isEmpty()) {
             ArrayList<Node> nextLevel = new ArrayList<>();
             for (Node node : currentLevel) {
-                System.out.println(node.freq);
+                if (node != myTree.root) { // exclude root
+                    System.out.println(node.freq);
+                }
+                
                 nextLevel.addAll(node.children);
 
                 // Check if this node is the last child of its parent

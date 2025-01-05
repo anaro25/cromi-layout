@@ -9,7 +9,7 @@ public class Init {
 			double y = Data.p((double) x, b);
 			double freq = (y * root.freq) / Init.getRawSum(b); // normalize
 			
-			String content = Formatter.formatContent(x);
+			String content = Init.formatContent(x);
 			root.addChild(new LeafNode(freq, content));
 		}
 	}
@@ -22,29 +22,23 @@ public class Init {
 		}
 		return rawSum;
 	}
-}
-
-class Data {
-	static int numLeaves = 106; // number of keys
-	static int degree = 9; // degree-ary
 	
-	static String[] symbols = {"a","b","c","d","e","f","g","h","i","j"};
-    static double[] symbolFreqs = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	
-	public static double p(double x, double b) { // Desmos exp regression
-		return 10.05217 * Math.pow(0.906822, b*x);
-	}
-}
-
-class Formatter {
-	public static String formatContent(int x) { // 001, 002, etc.
+	private static String formatContent(int x) { // 001, 002, etc.
 		String content = Integer.toString(x);
 		int maxContentLength = 3;
 		
 		for (int i = 0; i < (maxContentLength - content.length())+1; i++) {
 			content = "0" + content;
 		}
-		
 		return content;
+	}
+}
+
+class Data {
+	static int numLeaves = 106; // number of keys
+	static int degree = 9; // degree-ary
+	
+	public static double p(double x, double b) { // Desmos exp regression
+		return 10.05217 * Math.pow(0.906822, b*x);
 	}
 }
