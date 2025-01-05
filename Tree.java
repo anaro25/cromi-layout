@@ -15,7 +15,7 @@ public class Tree {
 }
 
 class Node {
-    char symbol; // 'a', 'b'
+    char symbolName = 'X'; // 'a', 'b'
     String fingerSymbol; // "di", "da"
     double freq;
     ArrayList<Node> children;

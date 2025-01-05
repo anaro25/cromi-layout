@@ -1,4 +1,5 @@
 package x;
+import java.util.ArrayList;
 
 public class Printer {
 	
@@ -7,7 +8,7 @@ public class Printer {
     	int indent = 6;
         // print freq
         System.out.print(" ".repeat(depth * indent));
-        System.out.print("|--(" + node.symbol + ") ");
+        System.out.print("|--(" + node.symbolName + ") ");
         System.out.print(formatDouble(node.freq));
 
         if (node instanceof LeafNode) {
@@ -44,5 +45,15 @@ public class Printer {
 	        paddedValue.append("0");
 	    }
 	    return paddedValue.toString();
+	}
+	
+	public static void printLevelOrder(ArrayList<ArrayList<Node>> levelOrderSiblings) {
+		for (ArrayList<Node> siblingGroup : levelOrderSiblings) {
+            for (Node node : siblingGroup) {
+            	System.out.print("(" + node.symbolName + ") ");
+                System.out.print(Printer.formatDouble(node.freq) + "\n");
+            }
+            System.out.println();
+        }
 	}
 }
