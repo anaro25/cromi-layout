@@ -4,27 +4,21 @@ import java.util.ArrayList;
 public class Main {
 	
 	public static void main(String[] args) {
-		Main.performHuffman(0.55);
+		Main.buildCromi(0.55);
 	}
 	
-	private static void performHuffman(double b) {
+	private static void buildCromi(double b) {
 		Tree myTree = new Tree(new Node(0)); // create rootNode with 0 freq
-		Init.initNodes(myTree, b);
+		Init.initRootChildren(myTree, b);
 		Huffman.createHuffmanTree(myTree.root);
 		
-		ArrayList<ArrayList<Node>> levelOrderSiblings = SymbolAssigner.getLevelOrderSiblings(myTree);
-		SymbolAssigner.assignSymbols(levelOrderSiblings);
+		SymbolAssigner.buildLevelOrderSiblings(myTree);
+		SymbolAssigner.assignSymbols(Data.levelOrderSiblings);
 		
-		Test.printSumAllNodes(levelOrderSiblings);
+		Test.printSumAllNodes();
 		Test.printSumSymbols();
 		
-		
-		//Printer.printLevelOrder(levelOrderSiblings);
-		
-		//System.out.print("\n" + "b = " + b);
-		//System.out.print(" | height = " + (myTree.getHeight()-1));
-		//System.out.println("\n");
-		
+		//Test.printLevelOrder();
 		//Printer.printTree(myTree.root, 0); // initial depth = 0
 	}
 	
@@ -37,7 +31,7 @@ public class Main {
 			b = b_init + (i_double * 0.05);
 			b = Math.round(b * 100.0) / 100.0; // Round to 2 decimal places
 			
-			Main.performHuffman(b);
+			Main.buildCromi(b);
 		}
 	}
 }

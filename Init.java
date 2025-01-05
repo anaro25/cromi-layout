@@ -2,11 +2,11 @@ package x;
 
 public class Init {
 
-	public static void initNodes(Tree myTree, double b) {
-		for (int x = 1; x <= Data.numLeaves; x++) {
+	public static void initRootChildren(Tree myTree, double b) {
+		for (int x = 1; x <= InitData.numLeaves; x++) {
 			Node root = myTree.root; // pass reference
 			
-			double y = Data.p((double) x, b);
+			double y = InitData.p((double) x, b);
 			double freq = (y * 100) / Init.getRawSum(b); // normalize
 			
 			String content = Init.formatContent(x);
@@ -17,8 +17,8 @@ public class Init {
 	private static double getRawSum(double b) {
 		double rawSum = 0;
 		
-		for (int x = 1; x <= Data.numLeaves; x++) {
-			rawSum += Data.p((double) x, b);
+		for (int x = 1; x <= InitData.numLeaves; x++) {
+			rawSum += InitData.p((double) x, b);
 		}
 		return rawSum;
 	}
@@ -34,9 +34,8 @@ public class Init {
 	}
 }
 
-class Data {
+class InitData {
 	static int numLeaves = 106; // number of keys
-	static int degree = 9; // degree-ary
 	
 	public static double p(double x, double b) { // Desmos exp regression
 		return 10.05217 * Math.pow(0.906822, b*x);

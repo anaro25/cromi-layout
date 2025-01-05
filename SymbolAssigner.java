@@ -23,9 +23,7 @@ public class SymbolAssigner {
     }
     
     // breadth-first traversal
-    public static ArrayList<ArrayList<Node>> getLevelOrderSiblings(Tree myTree) {
-        ArrayList<ArrayList<Node>> levelOrderSiblings = new ArrayList<>();
-        
+    public static void buildLevelOrderSiblings(Tree myTree) {
         ArrayList<Node> currentLevel = new ArrayList<>();
         currentLevel.add(myTree.root);
 
@@ -35,18 +33,17 @@ public class SymbolAssigner {
                 if (node != myTree.root) { // exclude root
                     
                     if (node.siblingIdx == 0) { // if first sibling
-                        levelOrderSiblings.add(new ArrayList<Node>()); // add new sibling list
+                        Data.levelOrderSiblings.add(new ArrayList<Node>()); // add new sibling list
                     }
                     
                     // add node to the current sibling group
-                    int currentSiblingGroupIdx = levelOrderSiblings.size()-1;
-                    levelOrderSiblings.get(currentSiblingGroupIdx).add(node);
+                    int currentSiblingGroupIdx = Data.levelOrderSiblings.size()-1;
+                    Data.levelOrderSiblings.get(currentSiblingGroupIdx).add(node);
                 }
                 nextLevel.addAll(node.children);
             }
             currentLevel = nextLevel; // Move to the next level
         }
-        return levelOrderSiblings;
     }
 
     public static double assignSymbols(ArrayList<ArrayList<Node>> levelOrderSiblings) {

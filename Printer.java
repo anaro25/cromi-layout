@@ -46,14 +46,4 @@ public class Printer {
 	    }
 	    return paddedValue.toString();
 	}
-	
-	public static void printLevelOrder(ArrayList<ArrayList<Node>> levelOrderSiblings) {
-		for (ArrayList<Node> siblingGroup : levelOrderSiblings) {
-            for (Node node : siblingGroup) {
-            	System.out.print("(" + node.symbolName + ") ");
-                System.out.print(Printer.formatDouble(node.freq) + "\n");
-            }
-            System.out.println();
-        }
-	}
 }
