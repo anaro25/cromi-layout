@@ -49,14 +49,17 @@ public class Test {
 	}
 	
 	public static void printLevelOrderLeafNodes() {
-		int idx = 1;
-		
 		for (LeafNode leafNode : Data.levelOrderLeafNodes) {
-			System.out.print(" (" + idx + ")");
 			System.out.print(" {" + leafNode.getStrPath() + "}");
 			System.out.print(" [" + leafNode.content + "]");
+			System.out.print(" " + Printer.formatDouble(leafNode.freq));
 			System.out.println();
-			idx++;
+		}
+	}
+	
+	public static void printContentList() {
+		for (Content content : ContentAssigner.contentList) {
+			System.out.println(Printer.formatDouble(content.freq) + " | " + content.name);
 		}
 	}
 }

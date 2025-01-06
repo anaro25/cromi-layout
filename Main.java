@@ -13,15 +13,11 @@ public class Main {
 	private static void buildCromi(Tree myTree) {
 		Builder.buildLevelOrderSiblings(myTree);
 		Builder.buildLevelOrderLeafNodes();
-		Test.printLevelOrderSiblings();
+		//Test.printLevelOrderLeafNodes();
 		
 		//SymbolAssigner.assignSymbols(myTree);
-		//
 		
-		/*
-		//Builder.buildPaths(myTree.root);
-		//CommonSfbChecker.checkCommonSfb();
-		*/
+		Test.printContentList();
 	}
 	
 	public static void buildHuffman(Tree myTree, double b) {

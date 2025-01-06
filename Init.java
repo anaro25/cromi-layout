@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 public class Init {
 
-    private static void buildRankedContent() {
+    private static void buildContentList() {
         try (BufferedReader reader = new BufferedReader(new FileReader("RankedContent.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
-            	//new Content(line);
+            	ContentAssigner.contentList.add(new Content(line));
             }
         } catch (Exception e) {
             System.err.println("Error reading file: " + e.getMessage());
@@ -17,7 +17,7 @@ public class Init {
     }
 
 	public static void initRootChildren(Tree myTree, double b) {
-		Init.buildRankedContent();
+		Init.buildContentList();
 		
 		for (int x = 1; x <= InitData.numLeaves; x++) {
 			Node root = myTree.root; // pass reference
@@ -26,6 +26,8 @@ public class Init {
 			double freq = (y * 100) / Init.getRawSum(b); // normalize
 			
 			root.addChild(new LeafNode(freq));
+			
+			ContentAssigner.contentList.get(x-1).setFreq(freq);
 		}
 	}
 	
