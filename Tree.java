@@ -62,17 +62,6 @@ class Node {
         }
         return maxHeight + 1; // Add 1 for the current node
     }
-    /*
-    public ArrayList<Symbol> getPath(Node root, Node node) {
-        ArrayList<Symbol> path = new ArrayList<>();
-        Node currentNode = node;
-        
-        while (currentNode != root) {
-            path.add(0, currentNode.symbol); // insert at start
-            currentNode = currentNode.parent;
-        }
-    }
-    */
 }
 
 class LeafNode extends Node {

@@ -41,7 +41,8 @@ public class Test {
 			b = b_init + (i_double * 0.05);
 			b = Math.round(b * 100.0) / 100.0; // Round to 2 decimal places
 			
-			Main.buildCromi(b);
+			System.out.print("b: " + b);
+			Main.buildHuffman(b);
 		}
 	}
 	

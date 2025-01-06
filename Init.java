@@ -41,8 +41,9 @@ public class Init {
 
 class InitData {
 	static int numLeaves = 106; // number of keys
+	static double b = 0.55; // the optimal
 	
 	public static double p(double x, double b) { // Desmos exp regression
-		return 10.05217 * Math.pow(0.906822, b*x);
+		return 9.92651 * Math.pow(0.906831, b*x);
 	}
 }
