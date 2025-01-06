@@ -9,7 +9,7 @@ public class Init {
         try (BufferedReader reader = new BufferedReader(new FileReader("RankedContent.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                Data.rankedContent.add(line);
+            	//new Content(line);
             }
         } catch (Exception e) {
             System.err.println("Error reading file: " + e.getMessage());
@@ -25,7 +25,7 @@ public class Init {
 			double y = InitData.p((double) x, b);
 			double freq = (y * 100) / Init.getRawSum(b); // normalize
 			
-			root.addChild(new LeafNode(freq, Data.rankedContent.get(x-1)));
+			root.addChild(new LeafNode(freq));
 		}
 	}
 	

@@ -7,7 +7,9 @@ public class Test {
 	public static void printLevelOrderSiblings() {
 		for (ArrayList<Node> siblingGroup : Data.levelOrderSiblings) {
             for (Node node : siblingGroup) {
-            	System.out.print("(" + node.symbol.letterName + ") ");
+            	if (node.symbol != null) {
+            		System.out.print("(" + node.symbol.letterName + ") ");
+            	}
                 System.out.print(Printer.formatDouble(node.freq) + "\n");
             }
             System.out.println();
@@ -42,7 +44,7 @@ public class Test {
 			b = Math.round(b * 100.0) / 100.0; // Round to 2 decimal places
 			
 			System.out.print("b: " + b);
-			Main.buildHuffman(b);
+			//Main.buildHuffman(b);
 		}
 	}
 	

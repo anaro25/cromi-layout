@@ -68,9 +68,8 @@ class LeafNode extends Node {
     String content; // Meaning (temporarily 001, etc.)
     ArrayList<Node> path;
 
-    public LeafNode(double freq, String content) {
+    public LeafNode(double freq) {
         super(freq); // Call super's constructor
-        this.content = content;
         path = new ArrayList<>();
     }
     
