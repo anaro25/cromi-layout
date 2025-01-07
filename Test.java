@@ -7,13 +7,12 @@ public class Test {
 	public static void printLevelOrderSiblings() {
 		for (ArrayList<Node> siblingGroup : Data.levelOrderSiblings) {
 			for (Node node : siblingGroup) {
-				System.out.print("(");
-				if (node.symbol != null) System.out.print(node.symbol.letterName);
-				System.out.print(")");
 				System.out.print(" " + Printer.formatDouble(node.freq));
 				
 				if (node instanceof LeafNode) {
 					LeafNode leafNode = (LeafNode) node;
+					
+					System.out.print(" (" + leafNode.getLetterCodeWord() + ")");
 					System.out.print(" [" + leafNode.content.name + "]");
 				}
 				System.out.println();
@@ -38,7 +37,7 @@ public class Test {
 	
 	public static void printLevelOrderLeafNodes() {
 		for (LeafNode leafNode : Data.levelOrderLeafNodes) {
-			System.out.print(" {" + leafNode.getStrPath() + "}");
+			System.out.print(" {" + leafNode.getLetterCodeWord() + "}");
 			System.out.print(" [" + leafNode.content.name + "]");
 			System.out.print(" " + Printer.formatDouble(leafNode.freq));
 			System.out.println();

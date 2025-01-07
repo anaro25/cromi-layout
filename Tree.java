@@ -83,12 +83,12 @@ class LeafNode extends Node {
 		}
 	}
 	
-	public String getStrPath() {
-		String strPath = "";
+	public String getLetterCodeWord() {
+		String letterCodeWord = "";
 		
 		for (Symbol symbol : path) {
-			strPath += String.valueOf(symbol.letterName);
+			letterCodeWord = String.valueOf(symbol.letterName) + letterCodeWord;
 		}
-		return strPath;
+		return letterCodeWord;
 	}
 }
