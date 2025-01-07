@@ -4,24 +4,23 @@ import java.util.ArrayList;
 public class Main {
 	
 	public static void main(String[] args) {
-		Tree myTree = new Tree(new Node(0)); // rootNode 0 freq
+		Tree myTree = new Tree(new Node(null));
 		
-		Main.buildHuffman(myTree, InitData.b);
+		Init.initRootChildren(myTree, InitData.b);
+		Huffman.createHuffmanTree(myTree.root);
+		
 		Main.buildCromi(myTree);
 	}
 	
 	private static void buildCromi(Tree myTree) {
 		Builder.buildLevelOrderSiblings(myTree);
-		Builder.buildLevelOrderLeafNodes();
-		//Test.printLevelOrderLeafNodes();
+		// Test.printLevelOrderSiblings(); // success
+		// Test.printContentList(); // success
 		
-		//SymbolAssigner.assignSymbols(myTree);
+
+		//SymbolAssigner.assignSymbols();
 		
-		Test.printContentList();
-	}
-	
-	public static void buildHuffman(Tree myTree, double b) {
-		Init.initRootChildren(myTree, b);
-		Huffman.createHuffmanTree(myTree.root);
+		
+		//ContentAssigner.assignContents();
 	}
 }

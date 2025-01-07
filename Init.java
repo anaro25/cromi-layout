@@ -4,18 +4,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 public class Init {
-
-    private static void buildContentList() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("RankedContent.txt"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-            	ContentAssigner.contentList.add(new Content(line));
-            }
-        } catch (Exception e) {
-            System.err.println("Error reading file: " + e.getMessage());
-        }
-    }
-
+	
 	public static void initRootChildren(Tree myTree, double b) {
 		Init.buildContentList();
 		
@@ -28,6 +17,19 @@ public class Init {
 			root.addChild(new LeafNode(freq));
 			
 			ContentAssigner.contentList.get(x-1).setFreq(freq);
+		}
+	}
+
+	private static void buildContentList() {
+		try (BufferedReader reader = new BufferedReader(new FileReader("RankedContent.txt"))) {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				// initially assign leafNode = null
+				ContentAssigner.contentList.add(new Content(line, null));
+			}
+		}
+		catch (Exception e) {
+			System.err.println("Error reading file: " + e.getMessage());
 		}
 	}
 	

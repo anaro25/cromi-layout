@@ -2,111 +2,135 @@ package x;
 import java.util.ArrayList;
 
 public class CommonSfbChecker {
-    
-    static ArrayList<CommonSfb> commonSfbList = new ArrayList<>();
-    
-    public static void checkCommonSfb() {
-        CommonSfbChecker.declareWordEndings();
-        CommonSfbChecker.declareCommonSfbs();
-        CommonSfbChecker.declareFunctionSpaceSfbs();
-        
-        CommonSfbChecker.printCommonSfb();
-    }
-    
-    private static void declareWordEndings() {
-        String wordStarts = "TOAWBCDSFMRHIYEGLNPUJK";
-        for (int i = 0; i < wordStarts.length(); i++) {
-            String secondFuncStr = String.valueOf(wordStarts.charAt(i));
-            CommonSfbChecker.addCommonSfb("Shift", secondFuncStr);
-        }
-        
-        String wordEndings = "ESTDNRYFLOGHAKMPUW";
-        for (int i = 0; i < wordEndings.length(); i++) {
-            String firstFuncStr = String.valueOf(wordEndings.charAt(i));
-            CommonSfbChecker.addCommonSfb(firstFuncStr, "Space");
-        }
-    }
-    
-    private static void declareFunctionSpaceSfbs() {
-        String[] listFirstFuncStr = {
-            "Right-paren","Period","Comma","Equal","Hyphen","Slash","Semicolon",
-            "Asterisk","Colon","Right-angle"
-        };
-        for (String firstFuncStr : listFirstFuncStr) {
-            CommonSfbChecker.addCommonSfb(firstFuncStr, "Space");
-        }
-    }
-    
-    private static void declareCommonSfbs() {
-        //CommonSfbChecker.addCommonSfb("Shift", );
-        /*
-        CommonSfbChecker.addCommonSfb();
-        CommonSfbChecker.addCommonSfb();
-        CommonSfbChecker.addCommonSfb();
-        CommonSfbChecker.addCommonSfb();
-        CommonSfbChecker.addCommonSfb();
-        CommonSfbChecker.addCommonSfb();
-        CommonSfbChecker.addCommonSfb();
-        CommonSfbChecker.addCommonSfb();
-        CommonSfbChecker.addCommonSfb();
-        CommonSfbChecker.addCommonSfb();
-        CommonSfbChecker.addCommonSfb();
-        CommonSfbChecker.addCommonSfb();
-        */
-        
-    }
-    
-    private static void addCommonSfb(String firstFuncStr, String secondFuncStr) {
-        LeafNode firstFunc = CommonSfbChecker.getLeafNodeFromContent(firstFuncStr);
-        LeafNode secondFunc = CommonSfbChecker.getLeafNodeFromContent(secondFuncStr);
-        
-        commonSfbList.add(new CommonSfb(firstFunc, secondFunc));
-    }
-    
-    private static void printCommonSfb() {
-        for (CommonSfb commonSfb : CommonSfbChecker.commonSfbList) {
-            System.out.print("{" + commonSfb.firstFunc.getStrPath() + "}");
-            System.out.print(" + ");
-            System.out.print("{" + commonSfb.secondFunc.getStrPath() + "}");
-            System.out.print(" | ");
-            System.out.print("[" + commonSfb.firstFunc.content + "]");
-            System.out.print(" + ");
-            System.out.print("[" + commonSfb.secondFunc.content + "]");
-            
-            if (CommonSfbChecker.isAdjacent(commonSfb.firstFunc, commonSfb.secondFunc)) {
-                System.out.print(" | " + "Adjacent!");
-            }
-            
-            System.out.println();
-        }
-    }
-    
-    private static boolean isAdjacent(LeafNode firstFunc, LeafNode secondFunc) {
-        Symbol lastSymbolOfFirstFunc = firstFunc.path.get(firstFunc.path.size()-1).symbol;
-        Symbol firstSymbolOfSecondFunc = secondFunc.path.get(0).symbol;
-        
-        if (lastSymbolOfFirstFunc == firstSymbolOfSecondFunc) {
-            return true;
-        }
-        return false;
-    }
+	
+	static ArrayList<CommonSfb> commonSfbList = new ArrayList<>();
+	
+	public static void initCommonSfbs() {
+		CommonSfbChecker.declareWordEndings();
+		CommonSfbChecker.declareCommonSfbs();
+		CommonSfbChecker.declareContentSpaceSfbs();
+	}
+	
+	private static void declareWordEndings() {
+		String wordStarts = "TOAWBCDSFMRHIYEGLNPUJK";
+		for (int i = 0; i < wordStarts.length(); i++) {
+			String secondContentStr = String.valueOf(wordStarts.charAt(i));
+			CommonSfbChecker.addCommonSfb("Shift", secondContentStr);
+		}
+		
+		String wordEndings = "ESTDNRYFLOGHAKMPUW";
+		for (int i = 0; i < wordEndings.length(); i++) {
+			String firstContentStr = String.valueOf(wordEndings.charAt(i));
+			CommonSfbChecker.addCommonSfb(firstContentStr, "Space");
+		}
+	}
+	
+	private static void declareContentSpaceSfbs() {
+		String[] firstContentStrList = {
+			"Right-paren","Period","Comma","Equal","Hyphen","Slash","Semicolon",
+			"Asterisk","Colon","Right-angle"
+		};
+		for (String firstContentStr : firstContentStrList) {
+			CommonSfbChecker.addCommonSfb(firstContentStr, "Space");
+		}
+	}
+	
+	private static void declareCommonSfbs() {
+		//CommonSfbChecker.addCommonSfb("Shift", );
+		/*
+		CommonSfbChecker.addCommonSfb();
+		CommonSfbChecker.addCommonSfb();
+		CommonSfbChecker.addCommonSfb();
+		CommonSfbChecker.addCommonSfb();
+		CommonSfbChecker.addCommonSfb();
+		CommonSfbChecker.addCommonSfb();
+		CommonSfbChecker.addCommonSfb();
+		CommonSfbChecker.addCommonSfb();
+		CommonSfbChecker.addCommonSfb();
+		CommonSfbChecker.addCommonSfb();
+		CommonSfbChecker.addCommonSfb();
+		CommonSfbChecker.addCommonSfb();
+		*/
+	}
+	
+	private static void addCommonSfb(String firstContentStr, String secondContentStr) {
+		Content firstContent = CommonSfbChecker.getContentFromName(firstContentStr);
+		Content secondContent = CommonSfbChecker.getContentFromName(secondContentStr);
+		
+		commonSfbList.add(new CommonSfb(firstContent, secondContent));
+	}
+	/*
+	private static void printCommonSfb() {
+		for (CommonSfb commonSfb : CommonSfbChecker.commonSfbList) {
+			System.out.print("{" + commonSfb.firstContent.leafNode.getStrPath() + "}");
+			System.out.print(" + ");
+			System.out.print("{" + commonSfb.secondContent.leafNode.getStrPath() + "}");
+			System.out.print(" | ");
+			System.out.print("[" + commonSfb.firstContent.name + "]");
+			System.out.print(" + ");
+			System.out.print("[" + commonSfb.secondContent.name + "]");
+			
+			if (CommonSfbChecker.isAdjacent(commonSfb.firstContent, commonSfb.secondContent)) {
+				System.out.print(" | " + "Adjacent!");
+			}
+			
+			System.out.println();
+		}
+	}
+	*/
+	
+	private static Content getContentFromName(String contentName) {
+		for (Content content : ContentAssigner.contentList) {
+			if (content.name.equals(contentName)) {
+				return content;
+			}
+		}
+		System.out.println("Error at getContentFromName()");
+		return null;
+	}
+	
+	private static boolean isAdjacent(LeafNode firstLeafNode, LeafNode secondLeafNode) {
+		Symbol lastSymbolOfFirstLeafNode = firstLeafNode.path.get(
+			firstLeafNode.path.size()-1).symbol;
+		Symbol firstSymbolOfSecondLeafNode = secondLeafNode.path.get(0).symbol;
+		
+		if (lastSymbolOfFirstLeafNode == firstSymbolOfSecondLeafNode) {
+			return true;
+		}
+		return false;
+	}
+	
+	public static boolean isYieldCommonSfb(LeafNode leafNode) {
 
-    private static LeafNode getLeafNodeFromContent(String content) {
-        for (LeafNode leafNode : Data.levelOrderLeafNodes) {
-            if (leafNode.content.equals(content)) {
-                return leafNode;
-            }
-        }
-        return null;
-    }
+		for (CommonSfb commonSfb : CommonSfbChecker.commonSfbList) {
+			Content firstContent = commonSfb.firstContent;
+			Content secondContent = commonSfb.secondContent;
+			
+			if (firstContent == leafNode.content) {
+				if (secondContent.leafNode != null) {
+					if (CommonSfbChecker.isAdjacent(leafNode, secondContent.leafNode)) {
+						return true;
+					}
+				}
+			}
+			else if (secondContent == leafNode.content) {
+				if (firstContent.leafNode != null) {
+					if (CommonSfbChecker.isAdjacent(firstContent.leafNode, leafNode)) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
 }
 
 class CommonSfb {
-    LeafNode firstFunc;
-    LeafNode secondFunc;
-    
-    public CommonSfb(LeafNode firstFunc, LeafNode secondFunc) {
-        this.firstFunc = firstFunc;
-        this.secondFunc = secondFunc;
-    }
+	Content firstContent;
+	Content secondContent;
+	
+	public CommonSfb(Content firstContent, Content secondContent) {
+		this.firstContent = firstContent;
+		this.secondContent = secondContent;
+	}
 }
