@@ -7,15 +7,13 @@ public class Test {
 	public static void printLevelOrderSiblings() {
 		for (ArrayList<Node> siblingGroup : Data.levelOrderSiblings) {
 			for (Node node : siblingGroup) {
-				System.out.print(" " + Printer.formatDouble(node.freq));
-				
 				if (node instanceof LeafNode) {
 					LeafNode leafNode = (LeafNode) node;
 					
-					System.out.print(" (" + leafNode.getLetterCodeWord() + ")");
+					System.out.print(" {" + leafNode.getLetterCodeWord() + "}");
 					System.out.print(" [" + leafNode.content.name + "]");
+					System.out.println();
 				}
-				System.out.println();
 			}
 			System.out.println();
 		}
@@ -49,4 +47,27 @@ public class Test {
 			System.out.println(Printer.formatDouble(content.freq) + " | " + content.name);
 		}
 	}
+	
+	public static void printCommonSfbs() {
+		for (CommonSfb commonSfb : CommonSfbChecker.commonSfbList) {
+			System.out.print("{" + commonSfb.firstContent.leafNode.getLetterCodeWord() + "}");
+			System.out.print(" + ");
+			System.out.print("{" + commonSfb.secondContent.leafNode.getLetterCodeWord() + "}");
+			System.out.print(" | ");
+			System.out.print("[" + commonSfb.firstContent.name + "]");
+			System.out.print(" + ");
+			System.out.print("[" + commonSfb.secondContent.name + "]");
+			System.out.print(" | ");
+			
+			if (CommonSfbChecker.isAdjacent(
+				commonSfb.firstContent.leafNode, commonSfb.secondContent.leafNode)) {
+				
+				System.out.print("Adjacent!");
+			}
+			else System.out.print(" /");
+			
+			System.out.println();
+		}
+	}
+	
 }

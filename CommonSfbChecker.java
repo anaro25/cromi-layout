@@ -59,25 +59,6 @@ public class CommonSfbChecker {
 		
 		commonSfbList.add(new CommonSfb(firstContent, secondContent));
 	}
-	/*
-	private static void printCommonSfb() {
-		for (CommonSfb commonSfb : CommonSfbChecker.commonSfbList) {
-			System.out.print("{" + commonSfb.firstContent.leafNode.getStrPath() + "}");
-			System.out.print(" + ");
-			System.out.print("{" + commonSfb.secondContent.leafNode.getStrPath() + "}");
-			System.out.print(" | ");
-			System.out.print("[" + commonSfb.firstContent.name + "]");
-			System.out.print(" + ");
-			System.out.print("[" + commonSfb.secondContent.name + "]");
-			
-			if (CommonSfbChecker.isAdjacent(commonSfb.firstContent, commonSfb.secondContent)) {
-				System.out.print(" | " + "Adjacent!");
-			}
-			
-			System.out.println();
-		}
-	}
-	*/
 	
 	private static Content getContentFromName(String contentName) {
 		for (Content content : ContentAssigner.contentList) {
@@ -89,7 +70,7 @@ public class CommonSfbChecker {
 		return null;
 	}
 	
-	private static boolean isAdjacent(LeafNode firstLeafNode, LeafNode secondLeafNode) {
+	public static boolean isAdjacent(LeafNode firstLeafNode, LeafNode secondLeafNode) {
 		Symbol lastSymbolOfFirstLeafNode = firstLeafNode.path.get(
 			firstLeafNode.path.size()-1);
 		Symbol firstSymbolOfSecondLeafNode = secondLeafNode.path.get(0);
