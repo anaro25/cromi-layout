@@ -14,13 +14,11 @@ public class Main {
 	
 	private static void buildCromi(Tree myTree) {
 		Builder.buildLevelOrderSiblings(myTree);
-		// Test.printLevelOrderSiblings(); // success
-		// Test.printContentList(); // success
+		// Test.printLevelOrderSiblings();
+		// Test.printContentList();
 		
-
-		//SymbolAssigner.assignSymbols();
+		SymbolAssigner.assignSymbols(myTree.root);
 		
-		
-		//ContentAssigner.assignContents();
+		Test.printLevelOrderSiblings();
 	}
 }

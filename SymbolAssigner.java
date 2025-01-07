@@ -13,7 +13,7 @@ public class SymbolAssigner {
 		}
 	}
 
-	public static void assignSymbols() {
+	public static void assignSymbols(Node root) {
 		CommonSfbChecker.initCommonSfbs();
 		ArrayList<Content> contentToAssign = ContentAssigner.contentList;
 		
@@ -38,7 +38,10 @@ public class SymbolAssigner {
 						
 						// if LeafNode, assign content
 						if (node instanceof LeafNode) {
-							ContentAssigner.assignContent((LeafNode) node, contentToAssign);
+							LeafNode leafNode = (LeafNode) node; // convert
+							leafNode.buildPath(root);
+							
+							ContentAssigner.assignContent(leafNode, contentToAssign);
 						}
 					}
 				} while (!isSymbolAssigned);

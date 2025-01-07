@@ -66,7 +66,7 @@ class Node {
 
 class LeafNode extends Node {
 	Content content;
-	ArrayList<Node> path;
+	ArrayList<Symbol> path;
 
 	public LeafNode(Double freq) {
 		super(freq); // Call super's constructor
@@ -74,11 +74,20 @@ class LeafNode extends Node {
 		path = new ArrayList<>();
 	}
 	
+	public void buildPath(Node root) {
+		Node node = this;
+		
+		while (node != root) {
+			path.add(0, node.symbol); // insert at start of list
+			node = node.parent;
+		}
+	}
+	
 	public String getStrPath() {
 		String strPath = "";
 		
-		for (Node node : path) {
-			strPath += String.valueOf(node.symbol.letterName);
+		for (Symbol symbol : path) {
+			strPath += String.valueOf(symbol.letterName);
 		}
 		return strPath;
 	}

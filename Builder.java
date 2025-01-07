@@ -13,16 +13,6 @@ public class Builder {
 		}
 	}
 	
-	public static void buildPaths(Node root) {
-		for (LeafNode leafNode : Data.levelOrderLeafNodes) {
-			Node currentNode = leafNode;
-			while (currentNode != root) {
-				leafNode.path.add(0, currentNode);
-				currentNode = currentNode.parent;
-			}
-		}
-	}
-	
 	// breadth-first traversal
 	public static void buildLevelOrderSiblings(Tree myTree) {
 		ArrayList<Node> currentLevel = new ArrayList<>();

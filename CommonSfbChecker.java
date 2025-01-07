@@ -27,7 +27,7 @@ public class CommonSfbChecker {
 	
 	private static void declareContentSpaceSfbs() {
 		String[] firstContentStrList = {
-			"Right-paren","Period","Comma","Equal","Hyphen","Slash","Semicolon",
+			"Close-paren","Period","Comma","Equal","Hyphen","Slash","Semicolon",
 			"Asterisk","Colon","Right-angle"
 		};
 		for (String firstContentStr : firstContentStrList) {
@@ -91,8 +91,8 @@ public class CommonSfbChecker {
 	
 	private static boolean isAdjacent(LeafNode firstLeafNode, LeafNode secondLeafNode) {
 		Symbol lastSymbolOfFirstLeafNode = firstLeafNode.path.get(
-			firstLeafNode.path.size()-1).symbol;
-		Symbol firstSymbolOfSecondLeafNode = secondLeafNode.path.get(0).symbol;
+			firstLeafNode.path.size()-1);
+		Symbol firstSymbolOfSecondLeafNode = secondLeafNode.path.get(0);
 		
 		if (lastSymbolOfFirstLeafNode == firstSymbolOfSecondLeafNode) {
 			return true;
